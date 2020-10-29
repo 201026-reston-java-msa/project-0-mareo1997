@@ -37,15 +37,27 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User insertUser(User u) { // Done
 		// TODO Auto-generated method stub
+		ArrayList<Role> roles = new ArrayList<>();
 		User user = null;
+		Role r;
+
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "INSERT INTO Roles values (?,?)";
+			sql = "INSERT INTO Roles(bankrole) VALUES (?)";
 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, u.getRole().getRoleId());
-			ps.setString(2, u.getRole().getRole());
+			ps.setString(1, "Customer");
 			ps.executeUpdate();
+
+			sql = "select * from Roles where bankrole='Customer'";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				roles.add(new Role(rs.getInt(1), rs.getString(2)));
+			}
+			r = roles.get(roles.size() - 1);
+			System.out.println(r);
 
 			sql = "INSERT INTO bankuser(username, bankpassword, firstname, lastname, email,roleid) VALUES (?,?,?,?,?,?)";
 			// Adds to user table
@@ -56,16 +68,15 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
 			ps.setString(5, u.getEmail());
-			ps.setInt(6, u.getRole().getRoleId());
+			ps.setInt(6, r.getRoleId());
 			ps.executeUpdate();
 
-			sql = "select * from bankuser b full join roles r on b.roleid =r.roleid where b.roleid = "
-					+ u.getRole().getRoleId();
+			sql = "select * from bankuser b full join roles r on b.roleid =r.roleid where b.roleid = " + r.getRoleId();// u.getRole().getRoleId();
 
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				Role r = new Role(rs.getInt(8), rs.getString(9));
+				r = new Role(rs.getInt(8), rs.getString(9));
 				user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
 			}
@@ -86,17 +97,18 @@ public class UserDaoImpl implements UserDao {
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from bankuser b " + "full join roles r on b.roleid =r.roleid "
-				+ "where b.userid =" + id;
+			sql = "select * from bankuser b " + "full join roles r on b.roleid =r.roleid " + "where b.userid =" + id;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
 				Role r = new Role(rs.getInt(8), rs.getString(9));
-				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r);
+				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r);
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
 //				System.out.println(AccountList+"\n");
-				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r,AccountList);
+				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r, AccountList);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -143,12 +155,14 @@ public class UserDaoImpl implements UserDao {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
-			while (rs.next()) {				
+			while (rs.next()) {
 				Role r = new Role(rs.getInt(8), rs.getString(9));
-				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r);
+				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r);
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
-				//System.out.println(AccountList+"\n");
-				user.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r,AccountList));				
+				// System.out.println(AccountList+"\n");
+				user.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r, AccountList));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -170,10 +184,12 @@ public class UserDaoImpl implements UserDao {
 
 			if (rs.next()) {
 				Role r = new Role(rs.getInt(8), rs.getString(9));
-				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r);
+				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r);
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
 //				System.out.println(AccountList+"\n");
-				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), r,AccountList);
+				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), r, AccountList);
 			}
 
 		} catch (SQLException e) {

@@ -6,6 +6,16 @@ public class Role {
 	private int roleId; // primary key
 	private String role; // not null, unique
 
+	public Role() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Role(String role) {
+		super();
+//		this.roleId = roleId;
+		this.role = role;
+	}
+
 	public Role(int roleId, String role) {
 		super();
 		this.roleId = roleId;

@@ -13,6 +13,7 @@ import org.postgresql.util.PSQLException;
 import com.revature.model.Account;
 import com.revature.model.AccountStatus;
 import com.revature.model.AccountType;
+import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.service.UserService;
 import com.revature.service.UserServiceImpl;
@@ -39,41 +40,59 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public Account insertAccount(Account a, User u) {
 		Account acct = null;
-		// System.out.println(a.getType().getType());
+		AccountStatus status;
+		AccountType type;
+		ArrayList<AccountType> typelist = new ArrayList<>();
+		ArrayList<AccountStatus> statuslist = new ArrayList<>();
+
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
-
-			sql = "insert into accountstatus(statusid,status) values (?,?)";
+			sql = "INSERT INTO accountstatus(status) VALUES (?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, a.getStatus().getStatusId());
-			ps.setString(2, a.getStatus().getStatus());
+			ps.setString(1, "Pending");
 			ps.executeUpdate();
 
-			sql = "insert into accounttype(typeid,accttype) values (?,?)";
+			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, a.getType().getTypeId());
-			ps.setString(2, a.getType().getType());
+			ps.setString(1, a.getType().getType());
 			ps.executeUpdate();
+
+			sql = "select * from accountstatus where status='Pending'";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				statuslist.add(new AccountStatus(rs.getInt(1), rs.getString(2)));
+			}
+			status = statuslist.get(statuslist.size() - 1);
+
+			sql = "select * from accounttype";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				typelist.add(new AccountType(rs.getInt(1), rs.getString(2)));
+			}
+			type = typelist.get(typelist.size() - 1);
 
 			sql = "insert into account(balance, statusid, typeid, ownerid) values (?,?,?,?)";// Adds to user table
 
 			ps = conn.prepareStatement(sql);
 			ps.setDouble(1, a.getBalance());
-			ps.setInt(2, a.getStatus().getStatusId());
-			ps.setInt(3, a.getType().getTypeId());
+			ps.setInt(2, status.getStatusId());
+			ps.setInt(3, type.getTypeId());
 			ps.setInt(4, u.getUserId());
 			ps.executeUpdate();
 
 			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid "
-					+ "where a.ownerid=" + u.getUserId() + " and a2.statusid =" + a.getStatus().getStatusId()
-					+ " and a3.typeid =" + a.getType().getTypeId();
-
+					+ "where a.ownerid=" + u.getUserId() + " and a2.statusid =" + status.getStatusId()
+					+ " and a3.typeid =" + type.getTypeId();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				acct = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
+				AccountStatus s = new AccountStatus(rs.getInt(6), rs.getString(7));
+				AccountType t = new AccountType(rs.getInt(8), rs.getString(9));
+				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
 				u.addAccount(acct);
 			}
 		} catch (PSQLException e) {

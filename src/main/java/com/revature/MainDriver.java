@@ -14,18 +14,19 @@ import com.revature.service.AccountServiceImpl;
 import com.revature.service.UserService;
 import com.revature.service.UserServiceImpl;
 
-public class Drivertest {
+public class MainDriver {
+
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		boolean run = true;
 
 		while (run) {
-			System.out.println("Do you have an account?");
-			int a = s.nextInt();
-			if (a == 1) {
-				Register();
-			} else if (a == 0) {
+			System.out.println("Do you have an account? Yes/No");
+			String a = s.next();
+			if (a.startsWith("y") || a.startsWith("Y")) {
 				Login();
+			} else if (a.startsWith("n") || a.startsWith("N")) {
+				Register();
 			} else {
 				System.out.println("Goodbye");
 				run = false;
@@ -36,7 +37,6 @@ public class Drivertest {
 
 	private static void Register() {
 		UserService userserv = new UserServiceImpl();
-		int roleid = 0;
 		String username, password, repassword, fname, lname, email;
 		boolean registering = true;
 		Scanner s = new Scanner(System.in);
@@ -55,13 +55,6 @@ public class Drivertest {
 			System.out.println("Reenter Password");
 			repassword = s.next();
 
-			try {
-				System.out.println("Enter roleid");
-				roleid = s.nextInt();
-			} catch (InputMismatchException e) {
-				System.out.print("Invalid input type.\n");
-			}
-
 			if (password.equals(repassword)) {
 				registering = false;
 			} else {
@@ -69,9 +62,11 @@ public class Drivertest {
 			}
 		} while (registering);
 
-		Role role = new Role(roleid, "Customer");
-		User user1 = new User(username, password, fname, lname, email, role);
+		//Role role = new Role("Customer");// Maybe delete
+		User user1 = new User(username, password, fname, lname, email/*, role*/);
+		System.out.println(user1);
 		User user2 = userserv.newUser(user1);
+		System.out.println(user2);
 
 		if (user2 != null) {
 			System.out.println("Registration sucessful");
@@ -85,7 +80,7 @@ public class Drivertest {
 	private static void Login() {
 		System.out.println("Login");
 		Scanner s = new Scanner(System.in);
-		String username = "king", password = "george";
+		String username, password;
 
 		System.out.println("Enter Username");
 		username = s.next();
@@ -110,21 +105,33 @@ public class Drivertest {
 	private static void CustomerMenu(User u) {
 		boolean login = true;
 		Scanner s = new Scanner(System.in);
+		String cust = null;
 		int custselect = 0;
 
 		do {
-			try {
-				System.out.println("Welcome " + u.getUsername() + " would you like to:");
-				System.out.println("1 <- Open an Account?");
-				System.out.println("2 <- Make a Deposit?");
-				System.out.println("3 <- Make a Withdrawl?");
-				System.out.println("4 <- Make a Transfer?");
-				System.out.println("0 <- Logout");
-				custselect = s.nextInt();
-			} catch (InputMismatchException e1) {
-				System.out.print("Invalid input type.\n");
+
+			System.out.println("Welcome " + u.getUsername() + " would you like to:");
+			System.out.println("1. Open an Account?");
+			System.out.println("2. Make a Deposit?");
+			System.out.println("3. Make a Withdrawl?");
+			System.out.println("4. Make a Transfer?");
+			System.out.println("5. Logout?");
+			cust = s.next();
+
+			if (cust.startsWith("o") || cust.startsWith("O") || cust.startsWith("A") || cust.startsWith("a")) {
+				custselect = 1;
+			} else if (cust.startsWith("d") || cust.startsWith("D")) {
+				custselect = 2;
+			} else if (cust.startsWith("w") || cust.startsWith("W")) {
+				custselect = 3;
+			} else if (cust.startsWith("t") || cust.startsWith("T")) {
+				custselect = 4;
+			} else if (cust.startsWith("l") || cust.startsWith("L")) {
+				custselect = -1;
+			} else {
+				custselect = 0;
 			}
-			s.nextLine();
+
 			switch (custselect) {
 			case 1:
 				openAccount(u);
@@ -138,7 +145,7 @@ public class Drivertest {
 			case 4:
 				transfer(u);
 				break;
-			case 0:
+			case -1:
 				System.out.println("Logged out.\n");
 				login = false;
 				break;
@@ -155,21 +162,15 @@ public class Drivertest {
 		String type = null;
 		Scanner s = new Scanner(System.in);
 
-		System.out.println("What type of account do you want? Checking or Savings");// Change to checkings later
+		System.out.println("What type of account do you want? Checkings or Savings");// Change to checkings later
 		String select = s.next();
 		if (select.startsWith("c") || select.startsWith("C")) {
-			type = "Checking";
+			type = "Checkings";
 		} else if (select.startsWith("s") || select.startsWith("S")) {
 			type = "Savings";
 		} else {
 			CustomerMenu(u);
 		}
-
-		System.out.println("Enter type id");
-		int tID = s.nextInt();
-
-		System.out.println("Enter status id");
-		int sID = s.nextInt();
 
 		System.out.println("\nEnter a minimum deposit of $500.00");
 		double deposit = s.nextDouble();
@@ -177,11 +178,11 @@ public class Drivertest {
 			System.out.println("Too low. Account rejected.\n");
 			CustomerMenu(u);
 		} else {
-			User u1 = userserv.getUser(u.getUserId());
-			AccountStatus as = new AccountStatus(sID, "Pending");
-			AccountType at = new AccountType(tID, type);
-			Account a = new Account(deposit, as, at);
-			Account account = acctserv.newAccount(a, u1);
+			User user = userserv.getUser(u.getUserId());
+			//AccountStatus as = new AccountStatus("Pending");// Maybe delete
+			AccountType at = new AccountType(type);
+			Account a = new Account(deposit, /*as,*/ at);
+			Account account = acctserv.newAccount(a, user);
 			if (account != null) {
 				System.out.println("Successfully opened account. Approval pending.");
 				System.out.println(account);
@@ -200,21 +201,23 @@ public class Drivertest {
 		int aID = s.nextInt();
 
 		boolean owner = acctserv.isOwner(u.getUserId(), aID);
-
-		if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
-			System.out.println("How much are you depositing?");
-			double b = s.nextDouble();
-			double i = acctserv.deposit(aID, b);
-			if (i == 0) {
-				System.out.println("Transaction fail.\n");
-			} else if (i == -1) {
-				System.out.println("Account is not open.\n");
+		try {
+			if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
+				System.out.println("How much are you depositing?");
+				double b = s.nextDouble();
+				double i = acctserv.deposit(aID, b);
+				if (i == 0) {
+					System.out.println("Transaction fail.\n");
+				} else if (i == -1) {
+					System.out.println("Account is not open.\n");
+				} else {
+					System.out.println("Deposited $" + b + " from " + aID + ".\n");
+				}
 			} else {
-				System.out.println("Deposited $" + b + " from " + aID + ".\n");
+				System.out.println("This account does not belong to you or you do not have permission to edit it.\n");
 			}
-		} else {
-			System.out.println(
-					"This account does not exist, does not belong to you or you do not have permission to edit it.\n");
+		} catch (NullPointerException e) {
+			System.out.println("This account does not exist.\n");
 		}
 	}
 
@@ -227,21 +230,23 @@ public class Drivertest {
 		int aID = s.nextInt();
 
 		boolean owner = acctserv.isOwner(u.getUserId(), aID);
-
-		if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
-			System.out.println("How much are you withdrawing?");
-			double b = s.nextDouble();
-			double i = acctserv.withdraw(aID, b);
-			if (i == 0) {
-				System.out.println("Transaction fail.\n");
-			} else if (i == -1) {
-				System.out.println("Account is not open.\n");
+		try {
+			if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
+				System.out.println("How much are you withdrawing?");
+				double b = s.nextDouble();
+				double i = acctserv.withdraw(aID, b);
+				if (i == 0) {
+					System.out.println("Transaction fail.\n");
+				} else if (i == -1) {
+					System.out.println("Account is not open.\n");
+				} else {
+					System.out.println("Withdrew $" + b + " from " + aID + ".\n");
+				}
 			} else {
-				System.out.println("Withdrew $" + b + " from " + aID + ".\n");
+				System.out.println("This account does not belong to you or you do not have permission to edit it.\n");
 			}
-		} else {
-			System.out.println(
-					"This account does not exist, does not belong to you or you do not have permission to edit it.\n");
+		} catch (NullPointerException e) {
+			System.out.println("This account does not exist.\n");
 		}
 	}
 
@@ -256,38 +261,55 @@ public class Drivertest {
 		int target = s.nextInt();
 
 		boolean owner = acctserv.isOwner(u.getUserId(), source);
-		if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
-			System.out.println("How much are you transfering?");
-			double b = s.nextDouble();
-			double i = acctserv.transfer(source, target, b);
-			if (i == 0) {
-				System.out.println("Transaction fail.\n");
-			} else if (i == -1) {
-				System.out.println("Account is not open.\n");
+
+		try {
+			if (owner == true || u.getRole().getRole().equalsIgnoreCase("Admin")) {
+				System.out.println("How much are you transfering?");
+				double b = s.nextDouble();
+				double i = acctserv.transfer(source, target, b);
+				if (i == 0) {
+					System.out.println("Transaction fail.\n");
+				} else if (i == -1) {
+					System.out.println("Account is not open.\n");
+				} else {
+					System.out.println("Transfered $" + b + " from " + source + " to " + target + ".\n");
+				}
 			} else {
-				System.out.println("Transfered $" + b + " from " + source + " to " + target + ".\n");
+				System.out.println(
+						"The account you are transferring from does not belong to you or you do not have permission to edit it.\n");
 			}
-		} else {
-			System.out.println("This account does not exist, does not belong to you or you do not have permission to edit it.\n");
+		} catch (NullPointerException e) {
+			System.out.println("One of these accounts do not exist.\n");
 		}
 	}
 
 	private static void EmployeeMenu(User u) {
 		Scanner s = new Scanner(System.in);
 		Boolean login = true;
+		String empl = null;
 		int emplselect = 0;
+
 		do {
-			try {
-				System.out.println("Welcome " + u.getUsername() + ", here are a range of options");
-				System.out.println("1 <- View all customers");
-				System.out.println("2 <- Approve/Deny account");
-				System.out.println("3 <- Update accounts");
-				System.out.println("0 <- Logout");
-				emplselect = s.nextInt();
-			} catch (InputMismatchException e) {
-				System.out.print("Invalid input type.\n");
+
+			System.out.println("Welcome " + u.getUsername() + ", here are a range of options");
+			System.out.println("1. View all Customers");
+			System.out.println("2. Approve/Deny account");
+			System.out.println("3. Update accounts");
+			System.out.println("4. Logout");
+			empl = s.next();
+
+			if (empl.startsWith("v") || empl.startsWith("V") || empl.startsWith("c") || empl.startsWith("C")) {
+				emplselect = 1;
+			} else if (empl.startsWith("a") || empl.startsWith("A") || empl.startsWith("d") || empl.startsWith("D")) {
+				emplselect = 2;
+			} else if (empl.startsWith("U") || empl.startsWith("u")) {
+				emplselect = 3;
+			} else if (empl.startsWith("l") || empl.startsWith("L")) {
+				emplselect = -1;
+			} else {
+				emplselect = 0;
 			}
-			s.nextLine();
+
 			switch (emplselect) {
 			case 1:
 				collector();
@@ -298,7 +320,7 @@ public class Drivertest {
 			case 3:
 				transaction(u);
 				break;
-			case 0:
+			case -1:
 				System.out.println("Logged out\n");
 				login = false;
 				break;
@@ -326,7 +348,6 @@ public class Drivertest {
 		System.out.println("Enter account id");
 		int sID = s.nextInt();
 		Account a = acctserv.getAccount(sID);
-		// System.out.println(a);
 
 		if (a != null) {
 			System.out.println("Pick a status?\nOpen, Pending, Denied, Close");
@@ -358,19 +379,28 @@ public class Drivertest {
 		boolean login = true;
 		Scanner s = new Scanner(System.in);
 		int select = 0;
+		String empl;
 
 		do {
-			try {
-				System.out.println("Would you like to:");
-				System.out.println("1 <- Make a Deposit?");
-				System.out.println("2 <- Make a Withdrawl?");
-				System.out.println("3 <- Make a Transfer?");
-				System.out.println("0 <- Exit");
-				select = s.nextInt();
-			} catch (InputMismatchException e1) {
-				System.out.print("Invalid input type.\n");
+			System.out.println("Would you like to:");
+			System.out.println("1. Make a Deposit?");
+			System.out.println("2. Make a Withdrawl?");
+			System.out.println("3. Make a Transfer?");
+			System.out.println("4. Exit?");
+			empl = s.next();
+
+			if (empl.startsWith("d") || empl.startsWith("D")) {
+				select = 1;
+			} else if (empl.startsWith("w") || empl.startsWith("W")) {
+				select = 2;
+			} else if (empl.startsWith("t") || empl.startsWith("T")) {
+				select = 3;
+			} else if (empl.startsWith("e") || empl.startsWith("E")) {
+				select = -1;
+			} else {
+				select = 0;
 			}
-			s.nextLine();
+
 			switch (select) {
 			case 1:
 				deposit(u);
@@ -381,7 +411,7 @@ public class Drivertest {
 			case 3:
 				transfer(u);
 				break;
-			case 0:
+			case -1:
 				login = false;
 				break;
 			default:

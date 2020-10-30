@@ -6,14 +6,14 @@ public class AccountType {
 	private int typeId; // primary key
 	private String type; // not null, unique
 
-	public AccountType(int typeId, String type) {
+	public AccountType(String type) {
 		super();
-		this.typeId = typeId;
 		this.type = type;
 	}
 
-	public AccountType(String type) {
+	public AccountType(int typeId, String type) {
 		super();
+		this.typeId = typeId;
 		this.type = type;
 	}
 

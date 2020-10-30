@@ -13,7 +13,6 @@ import org.postgresql.util.PSQLException;
 import com.revature.model.Account;
 import com.revature.model.AccountStatus;
 import com.revature.model.AccountType;
-import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.service.UserService;
 import com.revature.service.UserServiceImpl;
@@ -95,8 +94,27 @@ public class AccountDaoImpl implements AccountDao {
 				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
 				u.addAccount(acct);
 			}
-		} catch (PSQLException e) {
-			acct = null;
+		} catch (NullPointerException e) {
+			/*
+			 * sql = "select * from accountstatus where status='Pending'"; ps =
+			 * conn.prepareStatement(sql); rs = ps.executeQuery();
+			 * 
+			 * while (rs.next()) { statuslist.add(new AccountStatus(rs.getInt(1),
+			 * rs.getString(2))); } status = statuslist.get(statuslist.size() - 1);
+			 * 
+			 * sql = "delete from accountstatus where statusid=" + status.getStatusId(); ps
+			 * = conn.prepareStatement(sql); ps.executeUpdate();
+			 * 
+			 * sql = "select * from accounttype"; ps = conn.prepareStatement(sql); rs =
+			 * ps.executeQuery();
+			 * 
+			 * while (rs.next()) { typelist.add(new AccountType(rs.getInt(1),
+			 * rs.getString(2))); } type = typelist.get(typelist.size() - 1);
+			 * 
+			 * sql = "delete from accounttype where typeid=" + type.getTypeId(); ps =
+			 * conn.prepareStatement(sql); ps.executeUpdate();
+			 */
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -237,7 +255,7 @@ public class AccountDaoImpl implements AccountDao {
 		Account a2 = selectAccountById(to);
 		double balance1 = a1.getBalance();
 		double balance2 = a2.getBalance();
-		double bal = 1;
+		double bal = 0;
 
 		if (a1.getStatus().getStatus().equalsIgnoreCase("open")
 				&& a2.getStatus().getStatus().equalsIgnoreCase("open")) {
@@ -246,7 +264,7 @@ public class AccountDaoImpl implements AccountDao {
 				balance2 += b;
 				a1.setBalance(balance1);
 				a2.setBalance(balance2);
-
+				
 				try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 					sql = "UPDATE account set balance = " + a1.getBalance() + " where accountid=" + a1.getAccountId();
 					ps = conn.prepareStatement(sql);
@@ -255,17 +273,17 @@ public class AccountDaoImpl implements AccountDao {
 					sql = "UPDATE account set balance = " + a2.getBalance() + " where accountid=" + a2.getAccountId();
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+					
+					bal=1;//Success
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
-				bal = 0;
-				System.out.println("Transaction fail.");
+				bal = 2;//Money probs
 			}
 		} else {
-			bal = -1;
-			System.out.println("Account is not open.");
+			bal = 3; //Not open
 		}
 		return bal;
 	}

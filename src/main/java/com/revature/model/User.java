@@ -11,32 +11,19 @@ public class User {
 	private String lastName; // not null
 	private String email; // not null
 	private Role role;
-//	private Account account;
 	ArrayList<Account> AccountList = new ArrayList<Account>(); // Create and store a list of accounts
 
-	public User(String username, String password, String firstName, String lastName, String email, Role role) {
+	public User(String username, String password, String firstName, String lastName, String email) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.role = role;
-	}
-
-	public User(int i, String u, String p, String f, String l, String e, Role r) {
-		// TODO Auto-generated constructor stub
-		this.username = u;
-		this.password = p;
-		this.firstName = f;
-		this.lastName = l;
-		this.email = e;
-		this.userId = i;
-		this.role = r;
 	}
 
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			Role role, Account account) {
+			Role role) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -45,15 +32,6 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
-//		this.account = account;
-	}
-
-	public ArrayList<Account> getAccountList() {
-		return AccountList;
-	}
-
-	public void setAccountList(ArrayList<Account> accountList) {
-		AccountList = accountList;
 	}
 
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
@@ -69,47 +47,19 @@ public class User {
 		AccountList = accountList;
 	}
 
-	public User() {
-		super();
+	public ArrayList<Account> getAccountList() {
+		return AccountList;
 	}
 
-	public User(int userId, String username, String password, String firstName, String lastName, String email) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
-
-	public User(String username, String password, String firstName, String lastName, String email) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
-
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
+	public void setAccountList(ArrayList<Account> accountList) {
+		AccountList = accountList;
 	}
 
 	public String toString() {
 		String valid = "User ID: " + userId + "\n" + "Name: " + firstName + " " + lastName + "\n" + "Username: "
-				+ username + "\n" + "Email: " + email + "\n"+ role + "\n"+ AccountList.toString() + "\n";
+				+ username + "\n" + "Email: " + email + "\n" + role + "\n" + AccountList.toString() + "\n";
 		return valid;
 	}
-
-/*	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}*/
 
 	public void addAccount(Account a) {
 		AccountList.add(a);

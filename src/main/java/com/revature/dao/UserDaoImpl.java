@@ -35,12 +35,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User insertUser(User u) { // Done
+	public User insertUser(User u){ // Done
 		// TODO Auto-generated method stub
 		ArrayList<Role> roles = new ArrayList<>();
 		User user = null;
 		Role r;
-
+		System.out.println("a");
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			sql = "INSERT INTO Roles(bankrole) VALUES (?)";
@@ -71,17 +71,31 @@ public class UserDaoImpl implements UserDao {
 			ps.setInt(6, r.getRoleId());
 			ps.executeUpdate();
 
-			sql = "select * from bankuser b full join roles r on b.roleid =r.roleid where b.roleid = " + r.getRoleId();// u.getRole().getRoleId();
-
+			sql = "select * from bankuser b full join roles r on b.roleid =r.roleid where b.roleid = " + r.getRoleId();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
+
 			if (rs.next()) {
 				r = new Role(rs.getInt(8), rs.getString(9));
 				user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
 			}
+
 		} catch (PSQLException e) {
-			user = null;
+			user=null;
+			/*if(user==null) {
+			sql = "select * from Roles where bankrole='Customer'";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				roles.add(new Role(rs.getInt(1), rs.getString(2)));
+			}
+			r = roles.get(roles.size() - 1);
+
+			sql = "delete from roles where roleid=" + r.getRoleId();
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate();}*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,13 +201,11 @@ public class UserDaoImpl implements UserDao {
 				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
-//				System.out.println(AccountList+"\n");
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return u;

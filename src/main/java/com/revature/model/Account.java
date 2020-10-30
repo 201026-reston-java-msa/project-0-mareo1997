@@ -3,42 +3,25 @@ package com.revature.model;
 public class Account {
 	// The Account model is used to represent a single account for a user
 	private int accountId; // primary key
-	private int ownerid;
-	
-	public Account(int accountId, double balance, AccountStatus status, AccountType type,  int ownerid) {
-		this.accountId = accountId;
-		this.ownerid = ownerid;
-		this.balance = balance;
-		this.status = status;
-		this.type = type;
-	}
-
 	private double balance; // not null
 	private AccountStatus status;
 	private AccountType type;
-
-	public Account(double b) {// Deposit
-		this.balance = b;
-	}
-
-	public Account(int accountId, double balance, AccountStatus status, AccountType type) {
-		this.accountId = accountId;
-		this.balance = balance;
-		this.status = status;
-		this.type = type;
-	}
-
-	public Account(double balance, AccountStatus status, AccountType type) {
-		this.balance = balance;
-		this.status = status;
-		this.type = type;
-	}
+	private int ownerid;
 
 	public AccountType getType() {
 		return type;
 	}
 
 	public void setType(AccountType type) {
+		this.type = type;
+	}
+
+	public Account(int accountId, double balance, AccountStatus status, AccountType type, int ownerid) {
+		super();
+		this.accountId = accountId;
+		this.ownerid = ownerid;
+		this.balance = balance;
+		this.status = status;
 		this.type = type;
 	}
 

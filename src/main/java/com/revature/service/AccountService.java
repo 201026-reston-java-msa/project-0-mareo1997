@@ -13,7 +13,7 @@ public interface AccountService {
 	public List<Account> getAllAccount();
 
 	public ArrayList<Account> getAllPersonalAccount(User u);
-	
+
 	public Account getAccount(int id);
 
 	public Account change(int sID, String status);

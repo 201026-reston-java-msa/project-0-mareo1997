@@ -6,15 +6,10 @@ public class AccountStatus {
 	private int statusId; // primary key
 	private String status; // not null, unique
 
-	public AccountStatus(int statusId, String s) {
-		// TODO Auto-generated constructor stub
+	public AccountStatus(int statusId, String status) {
+		super();
 		this.statusId = statusId;
-		this.status = s;
-	}
-
-	public AccountStatus(String s) {
-		// TODO Auto-generated constructor stub
-		this.status = s;
+		this.status = status;
 	}
 
 	public int getStatusId() {

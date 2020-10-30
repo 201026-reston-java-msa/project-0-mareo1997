@@ -1,20 +1,17 @@
 package com.revature;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.revature.model.Account;
-import com.revature.model.AccountStatus;
 import com.revature.model.AccountType;
-import com.revature.model.Role;
 import com.revature.model.User;
 import com.revature.service.AccountService;
 import com.revature.service.AccountServiceImpl;
 import com.revature.service.UserService;
 import com.revature.service.UserServiceImpl;
 
-public class MainDriver {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
@@ -62,8 +59,7 @@ public class MainDriver {
 			}
 		} while (registering);
 
-		//Role role = new Role("Customer");// Maybe delete
-		User user1 = new User(username, password, fname, lname, email/*, role*/);
+		User user1 = new User(username, password, fname, lname, email);
 		System.out.println(user1);
 		User user2 = userserv.newUser(user1);
 		System.out.println(user2);
@@ -179,9 +175,9 @@ public class MainDriver {
 			CustomerMenu(u);
 		} else {
 			User user = userserv.getUser(u.getUserId());
-			//AccountStatus as = new AccountStatus("Pending");// Maybe delete
+			// AccountStatus as = new AccountStatus("Pending");// Maybe delete
 			AccountType at = new AccountType(type);
-			Account a = new Account(deposit, /*as,*/ at);
+			Account a = new Account(deposit, at);
 			Account account = acctserv.newAccount(a, user);
 			if (account != null) {
 				System.out.println("Successfully opened account. Approval pending.");
@@ -267,9 +263,9 @@ public class MainDriver {
 				System.out.println("How much are you transfering?");
 				double b = s.nextDouble();
 				double i = acctserv.transfer(source, target, b);
-				if (i == 0) {
+				if (i == 2) {
 					System.out.println("Transaction fail.\n");
-				} else if (i == -1) {
+				} else if (i == 3) {
 					System.out.println("Account is not open.\n");
 				} else {
 					System.out.println("Transfered $" + b + " from " + source + " to " + target + ".\n");

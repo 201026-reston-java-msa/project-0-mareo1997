@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public boolean isOwner(int i, int id) {
 		boolean owner = false;
-		owner = dao.isOwner(i,id);
+		owner = dao.isOwner(i, id);
 		return owner;
 	}
 

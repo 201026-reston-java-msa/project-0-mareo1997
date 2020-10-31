@@ -155,3 +155,74 @@
 10-30-2020 18:37:20 INFO  Main:212 - Successfully opened account number: 5 Approval Pending.
 10-30-2020 18:56:21 ERROR Main:79 - This email or username is already registered.
 
+10-30-2020 19:56:52 INFO  Main:75 - Successfully registered userID: 6.
+
+10-30-2020 20:01:35 ERROR Main:81 - This email or username is already registered.
+
+10-30-2020 21:10:17 ERROR Main:80 - This email or username is already registered.
+
+10-30-2020 21:11:09 ERROR Main:80 - This email or username is already registered.
+
+10-30-2020 21:11:37 ERROR Main:80 - This email or username is already registered.
+
+10-30-2020 21:12:39 INFO  Main:76 - Successfully registered userID: 1.
+
+10-30-2020 21:13:06 INFO  Main:162 - Logged out.
+
+10-30-2020 21:13:27 INFO  Main:76 - Successfully registered userID: 2.
+
+10-30-2020 21:14:43 INFO  Main:76 - Successfully registered userID: 1.
+
+10-30-2020 21:14:48 INFO  Main:162 - Logged out.
+
+10-30-2020 21:15:02 ERROR Main:80 - This email or username is already registered.
+
+10-30-2020 21:18:22 ERROR Main:109 - Invalid username or password.
+
+10-30-2020 21:19:15 ERROR Main:109 - Invalid username or password.
+
+10-30-2020 21:19:32 INFO  Main:76 - Successfully registered userID: 3.
+
+10-30-2020 21:19:46 INFO  Main:162 - Logged out.
+
+10-30-2020 21:19:52 ERROR Main:109 - Invalid username or password.
+
+10-30-2020 21:20:34 INFO  Main:76 - Successfully registered userID: 4.
+
+10-30-2020 21:20:42 INFO  Main:162 - Logged out.
+
+10-30-2020 21:20:50 INFO  Main:100 - e successfully logged in.
+
+10-30-2020 21:21:21 INFO  Main:146 - Choose option to open account.
+
+10-30-2020 21:21:39 INFO  Main:146 - Choose option to open account.
+
+10-30-2020 21:21:54 INFO  Main:210 - Successfully opened account number: 1 Approval Pending.
+10-30-2020 21:22:24 INFO  Main:150 - Choose option to deposit.
+
+10-30-2020 21:22:30 ERROR Main:236 - mareo1997 did not have permission to access acctID: 4.
+
+10-30-2020 21:22:41 INFO  Main:150 - Choose option to deposit.
+
+10-30-2020 21:22:46 ERROR Main:243 - com.revature.exceptions.UnOpenException: Can't perform transaction on unopen accounts Tried to access unopen acctID: 1.
+
+10-30-2020 21:24:27 INFO  Main:162 - Logged out.
+
+10-30-2020 21:24:33 INFO  Main:100 - king successfully logged in.
+
+10-30-2020 21:25:00 INFO  Main:103 - Admin: king successful logged in.
+
+10-30-2020 21:25:12 INFO  Main:348 - Choose option to view customers.
+
+10-30-2020 21:25:27 INFO  Main:352 - Choose option to approve or deny accounts.
+
+10-30-2020 21:25:48 INFO  Main:411 - king changed acctID: 1 status to Open.
+
+10-30-2020 21:25:59 INFO  Main:356 - Choose option to perform transactions on accounts.
+
+10-30-2020 21:26:05 INFO  Main:450 - Choose option to deposit.
+
+10-30-2020 21:26:14 INFO  Main:232 - king deposited $500.0 into acctID: 1.
+
+10-30-2020 21:26:25 INFO  Main:462 - Logged out.
+

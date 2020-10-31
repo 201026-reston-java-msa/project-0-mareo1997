@@ -39,72 +39,6 @@ public class AccountDaoImpl implements AccountDao {
 		}
 	}
 
-/*	@Override
-	public Account insertAccount(Account a, User u) {
-		Account acct = null;
-		AccountStatus status;
-		AccountType type;
-		ArrayList<AccountType> typelist = new ArrayList<>();
-		ArrayList<AccountStatus> statuslist = new ArrayList<>();
-		System.out.println(a+"\n"+u);
-		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
-			sql = "INSERT INTO accountstatus(status) VALUES (?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, "Pending");
-			ps.executeUpdate();
-
-			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, a.getType().getType());
-			ps.executeUpdate();
-
-			sql = "select * from accountstatus where status='Pending'";
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				statuslist.add(new AccountStatus(rs.getInt(1), rs.getString(2)));
-			}
-			status = statuslist.get(statuslist.size() - 1);
-
-			sql = "select * from accounttype";
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				typelist.add(new AccountType(rs.getInt(1), rs.getString(2)));
-			}
-			type = typelist.get(typelist.size() - 1);
-
-			sql = "insert into account(balance, statusid, typeid, ownerid) values (?,?,?,?)";// Adds to user table
-
-			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, a.getBalance());
-			ps.setInt(2, status.getStatusId());
-			ps.setInt(3, type.getTypeId());
-			ps.setInt(4, u.getUserId());
-			ps.executeUpdate();
-
-			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid "
-					+ "where a.ownerid=" + u.getUserId() + " and a2.statusid =" + status.getStatusId()
-					+ " and a3.typeid =" + type.getTypeId();
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				AccountStatus s = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType t = new AccountType(rs.getInt(8), rs.getString(9));
-				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
-				u.addAccount(acct);
-			}
-		} catch (PSQLException e) {
-			//acct=null;			
-		} catch (SQLException e) {
-			//e.printStackTrace();
-		}
-		return acct;
-	}*/
-	
 	@Override
 	public Account insertAccount(Account a, User u) {
 		System.out.println(a);
@@ -122,12 +56,12 @@ public class AccountDaoImpl implements AccountDao {
 			ps.setString(1, "Pending");
 			ps.executeUpdate();
 			System.out.println(ps);
-			
+
 			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, a.getType().getType());
 			ps.executeUpdate();
-			
+
 			sql = "select * from accountstatus where status='Pending'";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -143,7 +77,7 @@ public class AccountDaoImpl implements AccountDao {
 				typelist.add(new AccountType(rs.getInt(1), rs.getString(2)));
 			}
 			type = typelist.get(typelist.size() - 1);
-			
+
 			sql = "insert into account(balance, statusid, typeid, ownerid) values (?,?,?,?)";// Adds to user table
 			ps = conn.prepareStatement(sql);
 			ps.setDouble(1, a.getBalance());
@@ -167,7 +101,7 @@ public class AccountDaoImpl implements AccountDao {
 			}
 		} catch (PSQLException e) {
 			acct = null;
-			//e.printStackTrace();
+			System.out.println(e);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -194,6 +128,9 @@ public class AccountDaoImpl implements AccountDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (a == null) {
+			throw new NullPointerException();
 		}
 		return a;
 	}
@@ -278,7 +215,7 @@ public class AccountDaoImpl implements AccountDao {
 		double balance = 0;
 		Account a = selectAccountById(id);
 		balance = a.getBalance();// money in the account
-		
+
 		if (a.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance >= b) {
 				balance -= b;
@@ -308,13 +245,14 @@ public class AccountDaoImpl implements AccountDao {
 		double balance2 = a2.getBalance();
 		double bal = 0;
 
-		if (a1.getStatus().getStatus().equalsIgnoreCase("open") && a2.getStatus().getStatus().equalsIgnoreCase("open")) {
+		if (a1.getStatus().getStatus().equalsIgnoreCase("open")
+				&& a2.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance1 >= b) {
 				balance1 -= b;
 				balance2 += b;
 				a1.setBalance(balance1);
 				a2.setBalance(balance2);
-				
+
 				try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 					sql = "UPDATE account set balance = " + a1.getBalance() + " where accountid=" + a1.getAccountId();
 					ps = conn.prepareStatement(sql);
@@ -323,8 +261,8 @@ public class AccountDaoImpl implements AccountDao {
 					sql = "UPDATE account set balance = " + a2.getBalance() + " where accountid=" + a2.getAccountId();
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
-					
-					bal=1;//Success
+
+					bal = 1;// Success
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -344,7 +282,7 @@ public class AccountDaoImpl implements AccountDao {
 
 		if (status.equalsIgnoreCase("Close")) {
 			a = selectAccountById(sID);
-			cancelAccount(a);
+			a = cancelAccount(a);
 		} else {
 			try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
@@ -369,8 +307,12 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public void cancelAccount(Account a) { // TODO Auto-generated
+	public Account cancelAccount(Account a) { // TODO Auto-generated
 		UserService userserv = new UserServiceImpl();
+
+		a.getStatus().setStatus("Close");
+		AccountStatus s = new AccountStatus(a.getStatus().getStatusId(), a.getStatus().getStatus());
+		Account ac = new Account(a.getAccountId(), a.getBalance(), s, a.getType(), a.getOwnerid());
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
@@ -387,7 +329,7 @@ public class AccountDaoImpl implements AccountDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		return ac;
 	}
 
 	@Override

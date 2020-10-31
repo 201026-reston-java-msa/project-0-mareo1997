@@ -35,14 +35,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User insertUser(User u){ // Done
+	public User insertUser(User u) { // Done
 		// TODO Auto-generated method stub
 		ArrayList<Role> roles = new ArrayList<>();
 		User user = null;
 		Role r;
 		System.out.println("a");
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
-
 			sql = "INSERT INTO Roles(bankrole) VALUES (?)";
 
 			ps = conn.prepareStatement(sql);
@@ -55,6 +54,7 @@ public class UserDaoImpl implements UserDao {
 
 			while (rs.next()) {
 				roles.add(new Role(rs.getInt(1), rs.getString(2)));
+				System.out.println(roles);
 			}
 			r = roles.get(roles.size() - 1);
 			System.out.println(r);
@@ -82,11 +82,13 @@ public class UserDaoImpl implements UserDao {
 			}
 
 		} catch (PSQLException e) {
-			user=null;
-			System.out.println(e);
+			user = null;
+			// System.out.println(e);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(user);
 		return user;
 	}
 
@@ -106,8 +108,7 @@ public class UserDaoImpl implements UserDao {
 				Role r = new Role(rs.getInt(8), rs.getString(9));
 				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
-				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
-//				System.out.println(AccountList+"\n");
+				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);//System.out.println(AccountList+"\n");
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
 			}
@@ -115,7 +116,7 @@ public class UserDaoImpl implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(u==null) {
+		if (u == null) {
 			throw new NullPointerException();
 		}
 		return u;
@@ -178,11 +179,11 @@ public class UserDaoImpl implements UserDao {
 	public User userlogin(String username, String password) {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
-
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			sql = "select * from bankuser b inner join roles r on r.roleid = b.roleid where username= '" + username
 					+ "' AND bankpassword= '" + password + "'";
+
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -197,10 +198,11 @@ public class UserDaoImpl implements UserDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-		if(u==null) {
+		}
+		if (u == null) {
 			throw new NullPointerException();
 		}
+
 		return u;
 	}
 

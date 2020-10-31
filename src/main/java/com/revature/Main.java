@@ -61,15 +61,15 @@ public class Main {
 
 			if (password.equals(repassword)) {
 				registering = false;
+		
 			} else {
 				System.out.println("Password error\n");
 			}
 		} while (registering);
+		
 		try {
 		User user1 = new User(username, password, fname, lname, email);//System.out.println(user1);
-		User user2 = userserv.newUser(user1);//System.out.println(user2);
-
-		//if (user2 != null) { // System.out.println("Registration sucessful"); // System.out.println(user2);
+		User user2 = userserv.newUser(user1);//System.out.println(user2); //if (user2 != null) { // System.out.println("Registration sucessful"); // System.out.println(user2);
 			user2.getUserId();
 			System.out.println();
 			log.info("Successfully registered userID: "+user2.getUserId()+".\n");
@@ -91,7 +91,7 @@ public class Main {
 		password = s.next();
 		try {
 		UserService userserv = new UserServiceImpl();
-		User user = userserv.userlogin("mareo1997","password");
+		User user = userserv.userlogin(username, password);
 		//if (user != null) { //user.getUserId();
 			
 			if (user.getRole().getRole().equalsIgnoreCase("Customer")) {
@@ -158,7 +158,7 @@ public class Main {
 				transfer(u);
 				break;
 			case -1:
-				log.info("Logged out.\n");
+				log.info(u.getUsername()+" logged out\n");
 				login = false;
 				break;
 			default:
@@ -239,7 +239,7 @@ public class Main {
 			log.error("acctID: "+aID+" does not exist.\n");
 		} catch (UnOpenException e) {
 			System.out.println();
-			log.error(e+" Tried to access unopen acctID: "+aID+".\n");
+			log.error("Tried to access unopen acctID: "+aID+".\n");
 		}
 
 		 catch (DepositException e) {
@@ -357,7 +357,7 @@ public class Main {
 				transaction(u);
 				break;
 			case -1:
-				log.info("Logged out\n");
+				log.info(u.getUsername()+" logged out\n");
 				login = false;
 				break;
 			default:
@@ -459,7 +459,7 @@ public class Main {
 				transfer(u);
 				break;
 			case -1:
-				log.info("Logged out.\n");
+				log.info(u.getUsername()+" exited.\n");
 				login = false;
 				break;
 			default:

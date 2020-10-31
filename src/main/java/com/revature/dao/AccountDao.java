@@ -25,7 +25,7 @@ public interface AccountDao {
 	public Account status(int sID, String status);
 
 	// Delete
-	public void cancelAccount(Account a);
+	public Account cancelAccount(Account a);
 
 	public List<Account> selectAllStatus(String status);
 

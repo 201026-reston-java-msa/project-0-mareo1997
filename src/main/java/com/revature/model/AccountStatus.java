@@ -12,6 +12,11 @@ public class AccountStatus {
 		this.status = status;
 	}
 
+	public AccountStatus(String status) {
+		super();
+		this.status = status;
+	}
+
 	public int getStatusId() {
 		return statusId;
 	}

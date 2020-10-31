@@ -10,6 +10,9 @@ import java.util.List;
 
 import org.postgresql.util.PSQLException;
 
+import com.revature.exceptions.DepositException;
+import com.revature.exceptions.OverDraftException;
+import com.revature.exceptions.UnOpenException;
 import com.revature.model.Account;
 import com.revature.model.AccountStatus;
 import com.revature.model.AccountType;
@@ -36,14 +39,14 @@ public class AccountDaoImpl implements AccountDao {
 		}
 	}
 
-	@Override
+/*	@Override
 	public Account insertAccount(Account a, User u) {
 		Account acct = null;
 		AccountStatus status;
 		AccountType type;
 		ArrayList<AccountType> typelist = new ArrayList<>();
 		ArrayList<AccountStatus> statuslist = new ArrayList<>();
-
+		System.out.println(a+"\n"+u);
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 			sql = "INSERT INTO accountstatus(status) VALUES (?)";
 			ps = conn.prepareStatement(sql);
@@ -94,30 +97,81 @@ public class AccountDaoImpl implements AccountDao {
 				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
 				u.addAccount(acct);
 			}
-		} catch (NullPointerException e) {
-			/*
-			 * sql = "select * from accountstatus where status='Pending'"; ps =
-			 * conn.prepareStatement(sql); rs = ps.executeQuery();
-			 * 
-			 * while (rs.next()) { statuslist.add(new AccountStatus(rs.getInt(1),
-			 * rs.getString(2))); } status = statuslist.get(statuslist.size() - 1);
-			 * 
-			 * sql = "delete from accountstatus where statusid=" + status.getStatusId(); ps
-			 * = conn.prepareStatement(sql); ps.executeUpdate();
-			 * 
-			 * sql = "select * from accounttype"; ps = conn.prepareStatement(sql); rs =
-			 * ps.executeQuery();
-			 * 
-			 * while (rs.next()) { typelist.add(new AccountType(rs.getInt(1),
-			 * rs.getString(2))); } type = typelist.get(typelist.size() - 1);
-			 * 
-			 * sql = "delete from accounttype where typeid=" + type.getTypeId(); ps =
-			 * conn.prepareStatement(sql); ps.executeUpdate();
-			 */
+		} catch (PSQLException e) {
+			//acct=null;			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+		}
+		return acct;
+	}*/
+	
+	@Override
+	public Account insertAccount(Account a, User u) {
+		System.out.println(a);
+		System.out.println(u);
+		Account acct = null;
+		AccountStatus status;
+		AccountType type;
+		ArrayList<AccountType> typelist = new ArrayList<>();
+		ArrayList<AccountStatus> statuslist = new ArrayList<>();
 
+		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
+
+			sql = "INSERT INTO accountstatus(status) VALUES (?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "Pending");
+			ps.executeUpdate();
+			System.out.println(ps);
+			
+			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, a.getType().getType());
+			ps.executeUpdate();
+			
+			sql = "select * from accountstatus where status='Pending'";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				statuslist.add(new AccountStatus(rs.getInt(1), rs.getString(2)));
+			}
+			status = statuslist.get(statuslist.size() - 1);
+
+			sql = "select * from accounttype";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				typelist.add(new AccountType(rs.getInt(1), rs.getString(2)));
+			}
+			type = typelist.get(typelist.size() - 1);
+			
+			sql = "insert into account(balance, statusid, typeid, ownerid) values (?,?,?,?)";// Adds to user table
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, a.getBalance());
+			ps.setInt(2, status.getStatusId());
+			ps.setInt(3, type.getTypeId());
+			ps.setInt(4, u.getUserId());
+			ps.executeUpdate();
+
+			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid "
+					+ "where a.ownerid=" + u.getUserId() + " and a2.statusid =" + status.getStatusId()
+					+ " and a3.typeid =" + type.getTypeId();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				AccountStatus s = new AccountStatus(rs.getInt(6), rs.getString(7));
+				AccountType t = new AccountType(rs.getInt(8), rs.getString(9));
+				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
+				System.out.println(acct);
+				u.addAccount(acct);
+			}
+		} catch (PSQLException e) {
+			acct = null;
+			//e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println(acct);
 		return acct;
 	}
 
@@ -211,10 +265,10 @@ public class AccountDaoImpl implements AccountDao {
 					e.printStackTrace();
 				}
 			} else {
-				balance = 0;
+				throw new DepositException("Can't deposit $0 into an account.\n");
 			}
 		} else {
-			balance = -1;
+			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return balance;
 	}
@@ -222,28 +276,25 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public double withdraw(int id, double b) {
 		double balance = 0;
-		Account a;
-
-		a = selectAccountById(id);
+		Account a = selectAccountById(id);
 		balance = a.getBalance();// money in the account
-
+		
 		if (a.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance >= b) {
 				balance -= b;
 				a.setBalance(balance);
 				try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 					sql = "UPDATE account set balance = " + a.getBalance() + " where accountid=" + a.getAccountId();
-
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			} else {
-				balance = 0;
+				throw new OverDraftException("Withdraw cannot be greater than account");
 			}
 		} else {
-			balance = -1;
+			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return balance;
 	}
@@ -257,8 +308,7 @@ public class AccountDaoImpl implements AccountDao {
 		double balance2 = a2.getBalance();
 		double bal = 0;
 
-		if (a1.getStatus().getStatus().equalsIgnoreCase("open")
-				&& a2.getStatus().getStatus().equalsIgnoreCase("open")) {
+		if (a1.getStatus().getStatus().equalsIgnoreCase("open") && a2.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance1 >= b) {
 				balance1 -= b;
 				balance2 += b;
@@ -280,10 +330,10 @@ public class AccountDaoImpl implements AccountDao {
 					e.printStackTrace();
 				}
 			} else {
-				bal = 2;//Money probs
+				throw new OverDraftException("Withdraw cannot be greater than account");
 			}
 		} else {
-			bal = 3; //Not open
+			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return bal;
 	}
@@ -314,7 +364,6 @@ public class AccountDaoImpl implements AccountDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return a;
 	}

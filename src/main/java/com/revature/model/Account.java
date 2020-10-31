@@ -30,6 +30,15 @@ public class Account {
 		this.balance = balance;
 		this.type = type;
 	}
+	
+	
+
+	public Account(double balance, AccountStatus status, AccountType type) {
+		super();
+		this.balance = balance;
+		this.status = status;
+		this.type = type;
+	}
 
 	public AccountStatus getStatus() {
 		return status;

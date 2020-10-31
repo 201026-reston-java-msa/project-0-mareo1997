@@ -83,21 +83,8 @@ public class UserDaoImpl implements UserDao {
 
 		} catch (PSQLException e) {
 			user=null;
-			/*if(user==null) {
-			sql = "select * from Roles where bankrole='Customer'";
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				roles.add(new Role(rs.getInt(1), rs.getString(2)));
-			}
-			r = roles.get(roles.size() - 1);
-
-			sql = "delete from roles where roleid=" + r.getRoleId();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();}*/
+			System.out.println(e);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return user;
@@ -127,6 +114,9 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if(u==null) {
+			throw new NullPointerException();
 		}
 		return u;
 	}
@@ -188,11 +178,11 @@ public class UserDaoImpl implements UserDao {
 	public User userlogin(String username, String password) {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
+
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			sql = "select * from bankuser b inner join roles r on r.roleid = b.roleid where username= '" + username
 					+ "' AND bankpassword= '" + password + "'";
-
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -207,6 +197,9 @@ public class UserDaoImpl implements UserDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} 
+		if(u==null) {
+			throw new NullPointerException();
 		}
 		return u;
 	}

@@ -1,0 +1,157 @@
+10-30-2020 13:24:02 INFO  Main:98 - mareo1997 successful logged in.
+
+10-30-2020 13:24:07 INFO  Main:146 - A
+
+10-30-2020 15:13:05 INFO  Main:98 - mareo1997 successful logged in.
+
+10-30-2020 15:13:23 INFO  Main:150 - Choose option to deposit.
+
+10-30-2020 15:13:36 ERROR Main:234 - Transaction failed.
+
+10-30-2020 15:14:00 INFO  Main:150 - Choose option to deposit.
+
+10-30-2020 15:14:04 WARN  Main:244 - mareo1997 did not have permission to access account number 0
+10-30-2020 15:16:29 INFO  Main:150 - Choose option to deposit.
+
+10-30-2020 15:16:33 WARN  Main:244 - mareo1997 did not have permission to access account number 5
+10-30-2020 16:18:24 INFO  Main:96 - mareo1997 successfully logged in.
+
+10-30-2020 16:18:31 INFO  Main:150 - Choose option to withdraw.
+
+10-30-2020 16:18:40 ERROR Main:280 - Tried to overdraw $ from acctID: 1.
+
+10-30-2020 16:27:47 INFO  Main:97 - mareo1997 successfully logged in.
+
+10-30-2020 16:27:50 INFO  Main:147 - Choose option to deposit.
+
+10-30-2020 16:27:59 ERROR Main:233 - Tried to access an unopen acctID: 2.
+
+10-30-2020 16:28:14 INFO  Main:151 - Choose option to withdraw.
+
+10-30-2020 16:28:20 ERROR Main:284 - Tried to access an unopen acctID: 2.
+
+10-30-2020 16:29:30 INFO  Main:151 - Choose option to withdraw.
+
+10-30-2020 16:29:38 INFO  Main:270 - mareo1997 withdrew $1.0 from acctID: 1.
+
+10-30-2020 16:32:08 INFO  Main:151 - Choose option to withdraw.
+
+10-30-2020 16:32:10 ERROR Main:274 - mareo1997 did not have permission to access acctID: 3.
+
+10-30-2020 16:42:14 INFO  Main:35 - Ended
+
+10-30-2020 16:42:30 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 16:42:37 INFO  Main:148 - Choose option to deposit.
+
+10-30-2020 16:42:44 ERROR Main:250 - Tried to access an unopen acctID: 2.
+
+10-30-2020 16:43:54 INFO  Main:148 - Choose option to deposit.
+
+10-30-2020 16:44:00 ERROR Main:247 - Tried to deposit $0 int acctID: 1.
+
+10-30-2020 16:45:37 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 16:45:40 INFO  Main:152 - Choose option to withdraw.
+
+10-30-2020 16:45:48 ERROR Main:272 - mareo1997 did not have permission to access acctID: 3.
+
+10-30-2020 16:46:12 INFO  Main:152 - Choose option to withdraw.
+
+10-30-2020 16:46:15 ERROR Main:272 - mareo1997 did not have permission to access acctID: 0.
+
+10-30-2020 16:48:12 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 16:48:15 INFO  Main:152 - Choose option to withdraw.
+
+10-30-2020 16:48:21 ERROR Main:273 - mareo1997 did not have permission to access acctID: 0.
+
+10-30-2020 16:56:53 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 16:56:56 INFO  Main:152 - Choose option to withdraw.
+
+10-30-2020 16:57:09 ERROR Main:274 - com.revature.exceptions.UnOpenException: Can't perform transaction on unopen accounts Tried to access unopen acctID: 2.
+
+10-30-2020 17:29:41 ERROR Main:107 - Invalid username or password.
+
+10-30-2020 17:36:15 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 17:36:20 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 17:36:34 ERROR Main:210 - Failure to open account.
+
+10-30-2020 17:37:49 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 17:37:54 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 17:38:01 ERROR Main:210 - Failure to open account.
+
+10-30-2020 17:39:56 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 17:39:57 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 17:40:08 ERROR Main:210 - Failure to open account.
+
+10-30-2020 17:46:55 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 17:47:00 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 17:47:09 INFO  Main:205 - Successfully opened account number: 1 Approval Pending.
+
+10-30-2020 17:49:48 INFO  Main:160 - Logged out.
+
+10-30-2020 17:49:53 ERROR Main:107 - Invalid username or password.
+
+10-30-2020 17:58:40 ERROR Main:107 - Invalid username or password.
+
+10-30-2020 17:59:02 INFO  Main:74 - Successfully registered userID: 4.
+
+10-30-2020 17:59:28 INFO  Main:160 - Logged out.
+
+10-30-2020 17:59:45 ERROR Main:78 - Failure to register account.
+
+10-30-2020 18:02:05 INFO  Main:74 - Successfully registered userID: 6.
+
+10-30-2020 18:02:29 INFO  Main:160 - Logged out.
+
+10-30-2020 18:02:41 INFO  Main:74 - Successfully registered userID: 7.
+
+10-30-2020 18:03:22 ERROR Main:78 - Failure to register account.
+
+10-30-2020 18:05:23 ERROR Main:78 - Failure to register account.
+
+10-30-2020 18:12:06 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 18:12:07 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 18:12:14 ERROR Main:210 - Failure to open account.
+
+10-30-2020 18:15:53 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 18:15:53 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 18:16:01 ERROR Main:107 - Invalid username or password.
+
+10-30-2020 18:23:20 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 18:23:21 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 18:29:10 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 18:29:11 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 18:30:54 INFO  Main:98 - mareo1997 successfully logged in.
+
+10-30-2020 18:30:57 INFO  Main:144 - Choose option to open account.
+
+10-30-2020 18:34:22 INFO  Main:99 - mareo1997 successfully logged in.
+
+10-30-2020 18:34:24 INFO  Main:145 - Choose option to open account.
+
+10-30-2020 18:37:06 INFO  Main:99 - l successfully logged in.
+
+10-30-2020 18:37:11 INFO  Main:145 - Choose option to open account.
+
+10-30-2020 18:37:20 INFO  Main:212 - Successfully opened account number: 5 Approval Pending.
+10-30-2020 18:56:21 ERROR Main:79 - This email or username is already registered.
+

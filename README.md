@@ -19,7 +19,7 @@ Leveraging Java 8, create an application that simulates simple banking transacti
     * Approving/denying accounts
     * withdrawing, depositing, transferring from all accounts
     * canceling accounts
-*	Reasonable test coverage for the service layer is expected using JUnit. **Incomplete**
+*	Reasonable test coverage for the service layer is expected using JUnit. **DONE**
     * TDD is encouraged. **Incomplete**
 *	Logging should be accomplished using Log4J
     * All transactions should be logged **DONE**
@@ -32,14 +32,14 @@ Leveraging Java 8, create an application that simulates simple banking transacti
 ## Evaluation
 The project will be evaluated out of 100 points split between two main catagories: 70 points for the functionality and design of your project and 30 points for the presentation of your project during the project showcase. The evaluation will be further subdivided as follows: 
 
-**Project Score**(70 pts): 15 + 15 + 5 + 5 = 40 + 10 = 50
+**Project Score**(70 pts): 15 + 15 + 5 + 5 = 40 + 10 = 50 + 5 = 55
 * 15 pts: Ability to persist meaningful data in the database and then retrieve it and display it to the console. **DONE**
 * 15 pts: Ability to make withdrawals from, deposits to, and transfers between accounts. **DONE**
 * 10 pts: Proper database schema achieving 3rd normal form. (E.g. Accounts have a proper relationship to their owning user.)
 * 10 pts: Login, register, update and logout functionality for users.  **DONE**
 * 5 pts: Proper use of DAO design pattern.  **DONE**
 * 5 pts: Different user roles with different levels of access implemented correctly. **DONE**
-* 5 pts: Reasonable test coverage of the service layer and proper logging. 
+* 5 pts: Reasonable test coverage of the service layer and proper logging. **DONE**
 * 5 pts: Appropriate validation for user inputs.
 
 

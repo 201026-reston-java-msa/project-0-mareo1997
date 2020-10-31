@@ -18,11 +18,13 @@ import com.revature.exceptions.UnOpenException;
 import com.revature.model.Account;
 import com.revature.model.AccountType;
 import com.revature.model.User;
+import com.revature.service.AccountServiceImpl;
+import com.revature.service.UserServiceImpl;
 
 @FixMethodOrder
 public class Testing {
-	private static final UserDaoImpl user = new UserDaoImpl();
-	private static final AccountDaoImpl acct = new AccountDaoImpl();
+	private static final UserServiceImpl user = new UserServiceImpl();
+	private static final AccountServiceImpl acct = new AccountServiceImpl();
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
@@ -32,47 +34,47 @@ public class Testing {
 	public void testinsert() {// Must change username or email after each use
 
 		User u = new User("mareo1997", "password", "Mareo", "Yapp", "mareo1997@gmail.com");
-		assertEquals("Mareo", user.insertUser(u).getFirstName());
+		assertEquals("Mareo", user.newUser(u).getFirstName());
 
 		u = new User("marwil", "william", "Marcia", "Williamson", "mareo199@gmail.com");
-		assertEquals("Marcia", user.insertUser(u).getFirstName());
+		assertEquals("Marcia", user.newUser(u).getFirstName());
 
 		u = new User("king", "george", "Kingsley", "Yapp", "mareo19@gmail.com");
-		assertEquals("Kingsley", user.insertUser(u).getFirstName());
+		assertEquals("Kingsley", user.newUser(u).getFirstName());
 
 		// expectedException.expect(NullPointerException.class);
 		User u2 = new User("mareo1997", "password", "Mareo", "Yapp", "mareo1997@gmail.com");
-		assertEquals(null, user.insertUser(u2));
+		assertEquals(null, user.newUser(u2));
 
 	}
 
 //	@Ignore
 	@Test
 	public void testOPENACCOUNT() {
-		User u = user.selectUserById(1);
+		User u = user.getUser(1);
 		AccountType at = new AccountType("Savings");
 		Account a = new Account(8000, at);
-		assertEquals(u.getUserId(), acct.insertAccount(a, u).getOwnerid());
+		assertEquals(u.getUserId(), acct.newAccount(a, u).getOwnerid());
 
-		u = user.selectUserById(1);
+		u = user.getUser(1);
 		at = new AccountType("Savings");
 		a = new Account(7000, at);
-		assertEquals(u.getUserId(), acct.insertAccount(a, u).getOwnerid());
+		assertEquals(u.getUserId(), acct.newAccount(a, u).getOwnerid());
 
-		u = user.selectUserById(1);
+		u = user.getUser(1);
 		at = new AccountType("Checkings");
 		a = new Account(6000, at);
-		assertEquals(u.getUserId(), acct.insertAccount(a, u).getOwnerid());
+		assertEquals(u.getUserId(), acct.newAccount(a, u).getOwnerid());
 
-		u = user.selectUserById(1);
+		u = user.getUser(1);
 		at = new AccountType("Checkings");
 		a = new Account(5000, at);
-		assertEquals(u.getUserId(), acct.insertAccount(a, u).getOwnerid());
+		assertEquals(u.getUserId(), acct.newAccount(a, u).getOwnerid());
 
 		at = new AccountType("Savings");
 		a = new Account(4000, at);
 		u = new User("THIS", "IS", "A", "FAKE", "USER");
-		assertEquals(null, acct.insertAccount(a, u));
+		assertEquals(null, acct.newAccount(a, u));
 	}
 
 	@Test
@@ -85,10 +87,10 @@ public class Testing {
 
 	@Test
 	public void testuserid() {
-		assertEquals("Mareo", user.selectUserById(1).getFirstName());
+		assertEquals("Mareo", user.getUser(1).getFirstName());
 
 		expectedException.expect(NullPointerException.class);
-		user.selectUserById(0);// assertEquals(null, user.selectUserById(0));
+		user.getUser(0);// assertEquals(null, user.getUser(0));
 	}
 
 	@Test
@@ -100,28 +102,28 @@ public class Testing {
 
 	@Test
 	public void testACCTID() {
-		assertEquals(1, acct.selectAccountById(1).getAccountId());
+		assertEquals(1, acct.getAccount(1).getAccountId());
 
 		expectedException.expect(NullPointerException.class);
-		acct.selectAccountById(0);
+		acct.getAccount(0);
 	} 
 
 	@Test
 	public void testSTATUS() {
-		assertEquals("Open", acct.status(1, "Open").getStatus().getStatus());
-		assertEquals("Open", acct.status(4, "Open").getStatus().getStatus());
+		assertEquals("Open", acct.change(1, "Open").getStatus().getStatus());
+		assertEquals("Open", acct.change(4, "Open").getStatus().getStatus());
 
-		assertEquals(null, acct.status(0, "Open"));
+		assertEquals(null, acct.change(0, "Open"));
 
-		assertEquals("Close", acct.status(2, "Close").getStatus().getStatus());
+		assertEquals("Close", acct.change(2, "Close").getStatus().getStatus());
 
 		expectedException.expect(NullPointerException.class);
-		acct.selectAccountById(2);
+		acct.getAccount(2);
 	}
 
 	@Test
 	public void testTRANSACTIONS() {
-		Account a = acct.selectAccountById(1);
+		Account a = acct.getAccount(1);
 		double d = a.getBalance() + 3000;
 		assertEquals(d, acct.deposit(1, 3000), 2);
 
@@ -131,7 +133,7 @@ public class Testing {
 		assertEquals(1, acct.transfer(1, 4, 1000), 2); // return 1 means transfer went through
 		assertEquals(1, acct.transfer(4, 1, 1000), 2);
 
-		Account a2 = acct.selectAccountById(4);
+		Account a2 = acct.getAccount(4);
 
 		expectedException.expect(DepositException.class);
 		acct.deposit(1, 0); // Cannot deposit $0

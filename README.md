@@ -4,42 +4,42 @@
 Leveraging Java 8, create an application that simulates simple banking transactions
 
 **Requirements**
-**	Build the application using Java 8 **DONE**
-*	All interaction with the user should be done through the console using the `Scanner` class **DONE**
-*	Customers of the bank should be able to register with a username and password, and apply to open an account. **DONE**
+*	Build the application using Java 8
+*	All interaction with the user should be done through the console using the `Scanner` class
+*	Customers of the bank should be able to register with a username and password, and apply to open an account.
     * Stretch Goal: Customers should be able to apply for joint accounts
-*	Once the account is open, customers should be able to withdraw, deposit, and transfer funds between accounts **DONE**
-    * All basic validation should be done, such as trying to input negative amounts, overdrawing from accounts etc. **DONE**
-*	Employees of the bank should be able to view all of their customers information. This includes: **DONE**
+*	Once the account is open, customers should be able to withdraw, deposit, and transfer funds between accounts
+    * All basic validation should be done, such as trying to input negative amounts, overdrawing from accounts etc.
+*	Employees of the bank should be able to view all of their customers information. This includes:
     * Account information
     * Account balances
     * Personal information
-*	Employees should be able to approve/deny open applications for accounts **DONE**
-*	Bank admins should be able to view and edit all accounts. This includes: **DONE**
+*	Employees should be able to approve/deny open applications for accounts
+*	Bank admins should be able to view and edit all accounts. This includes:
     * Approving/denying accounts
     * withdrawing, depositing, transferring from all accounts
     * canceling accounts
-*	Reasonable test coverage for the service layer is expected using JUnit. **DONE**
-    * TDD is encouraged. **Incomplete**
+*	Reasonable test coverage for the service layer is expected using JUnit.
+    * TDD is encouraged.
 *	Logging should be accomplished using Log4J
-    * All transactions should be logged **DONE**
+    * All transactions should be logged
 
-* Create an SQL script that will create a user in an SQL database and a table schema for storing your bank users and account information. **DONE**
+* Create an SQL script that will create a user in an SQL database and a table schema for storing your bank users and account information.
 * Your database should include at least 1 stored procedure.
-* Have your bank application connect to your SQL database using JDBC and store all information that way. **DONE**
-* You should use the DAO design pattern for data connectivity. **DONE**
+* Have your bank application connect to your SQL database using JDBC and store all information that way.'
+* You should use the DAO design pattern for data connectivity.
 
 ## Evaluation
 The project will be evaluated out of 100 points split between two main catagories: 70 points for the functionality and design of your project and 30 points for the presentation of your project during the project showcase. The evaluation will be further subdivided as follows: 
 
-**Project Score**(70 pts): 15 + 15 + 5 + 5 = 40 + 10 = 50 + 5 = 55
-* 15 pts: Ability to persist meaningful data in the database and then retrieve it and display it to the console. **DONE**
-* 15 pts: Ability to make withdrawals from, deposits to, and transfers between accounts. **DONE**
+**Project Score**(70 pts):
+* 15 pts: Ability to persist meaningful data in the database and then retrieve it and display it to the console. 
+* 15 pts: Ability to make withdrawals from, deposits to, and transfers between accounts.
 * 10 pts: Proper database schema achieving 3rd normal form. (E.g. Accounts have a proper relationship to their owning user.)
-* 10 pts: Login, register, update and logout functionality for users.  **DONE**
-* 5 pts: Proper use of DAO design pattern.  **DONE**
-* 5 pts: Different user roles with different levels of access implemented correctly. **DONE**
-* 5 pts: Reasonable test coverage of the service layer and proper logging. **DONE**
+* 10 pts: Login, register, update and logout functionality for users.  
+* 5 pts: Proper use of DAO design pattern.  
+* 5 pts: Different user roles with different levels of access implemented correctly. 
+* 5 pts: Reasonable test coverage of the service layer and proper logging. 
 * 5 pts: Appropriate validation for user inputs.
 
 

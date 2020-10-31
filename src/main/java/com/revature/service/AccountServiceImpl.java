@@ -18,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAllAccount() {
+	public List<Account> getAllAccount() { //NEED TO TEST
 		List<Account> myList = dao.selectAllAccount();
 		return myList;
 	}
@@ -34,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public ArrayList<Account> getAllPersonalAccount(User u) {
+	public ArrayList<Account> getAllPersonalAccount(User u) { //NEED TO TEST
 		ArrayList<Account> myList = dao.PersonalAccount(u);
 		return myList;
 	}
@@ -54,13 +54,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAllStatus(String status) {
+	public List<Account> getAllStatus(String status) { //NOT USING
 		List<Account> list = dao.selectAllStatus(status);
 		return list;
 	}
 
 	@Override
-	public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID) {
+	public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID) { //NOT USING
 		return dao.updateAccount(id, balance, sID, status, tID, type, oID);
 	}
 

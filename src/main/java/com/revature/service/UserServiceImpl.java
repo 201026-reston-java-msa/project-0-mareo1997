@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ArrayList<User> getAllUser() {
+	public ArrayList<User> getAllUser() { //NEED TO TEST
 		// our post-DB call business logic would go here
 		ArrayList<User> myList = dao.selectAllUser();
 		return myList;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(int id, String username, String password, String firstname, String lastname, String email) {
+	public User updateUser(int id, String username, String password, String firstname, String lastname, String email) { //NOT USING
 		return dao.updateUser(id, username, password, firstname, lastname, email);
 	}
 

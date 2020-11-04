@@ -1,228 +1,581 @@
-10-30-2020 13:24:02 INFO  Main:98 - mareo1997 successful logged in.
+11-03-2020 20:47:34 WARN  UserDaoImpl:206 - Invalid username or password.
 
-10-30-2020 13:24:07 INFO  Main:146 - A
+11-03-2020 20:48:21 INFO  UserDaoImpl:209 - king successfully logged in.
 
-10-30-2020 15:13:05 INFO  Main:98 - mareo1997 successful logged in.
+11-03-2020 20:48:22 WARN  UserDaoImpl:206 - Invalid username or password.
 
-10-30-2020 15:13:23 INFO  Main:150 - Choose option to deposit.
+11-03-2020 20:50:46 INFO  Main:92 - Login attempt.
 
-10-30-2020 15:13:36 ERROR Main:234 - Transaction failed.
+11-03-2020 20:50:50 INFO  UserDaoImpl:209 - king successfully logged in.
 
-10-30-2020 15:14:00 INFO  Main:150 - Choose option to deposit.
+11-03-2020 20:52:59 INFO  Main:92 - Login attempt.
 
-10-30-2020 15:14:04 WARN  Main:244 - mareo1997 did not have permission to access account number 0
-10-30-2020 15:16:29 INFO  Main:150 - Choose option to deposit.
+11-03-2020 20:53:02 INFO  UserDaoImpl:200 - Customer: king successfully logged in.
 
-10-30-2020 15:16:33 WARN  Main:244 - mareo1997 did not have permission to access account number 5
-10-30-2020 16:18:24 INFO  Main:96 - mareo1997 successfully logged in.
+11-03-2020 20:53:09 INFO  Main:92 - Login attempt.
 
-10-30-2020 16:18:31 INFO  Main:150 - Choose option to withdraw.
+11-03-2020 20:53:13 INFO  UserDaoImpl:200 - Customer: king successfully logged in.
 
-10-30-2020 16:18:40 ERROR Main:280 - Tried to overdraw $ from acctID: 1.
+11-03-2020 20:54:47 INFO  Main:160 - king logged out
 
-10-30-2020 16:27:47 INFO  Main:97 - mareo1997 successfully logged in.
+11-03-2020 20:54:50 INFO  Main:92 - Login attempt.
 
-10-30-2020 16:27:50 INFO  Main:147 - Choose option to deposit.
+11-03-2020 20:54:52 WARN  UserDaoImpl:207 - Invalid username or password.
 
-10-30-2020 16:27:59 ERROR Main:233 - Tried to access an unopen acctID: 2.
+11-03-2020 20:55:08 INFO  Main:92 - Login attempt.
 
-10-30-2020 16:28:14 INFO  Main:151 - Choose option to withdraw.
+11-03-2020 20:55:11 WARN  UserDaoImpl:207 - Invalid username or password.
 
-10-30-2020 16:28:20 ERROR Main:284 - Tried to access an unopen acctID: 2.
+11-03-2020 20:55:27 INFO  UserDaoImpl:200 - Customer: king successfully logged in.
 
-10-30-2020 16:29:30 INFO  Main:151 - Choose option to withdraw.
+11-03-2020 20:55:29 WARN  UserDaoImpl:207 - Invalid username or password.
 
-10-30-2020 16:29:38 INFO  Main:270 - mareo1997 withdrew $1.0 from acctID: 1.
+11-03-2020 21:00:38 INFO  UserDaoImpl:117 - Identified Customer: mareo1997
 
-10-30-2020 16:32:08 INFO  Main:151 - Choose option to withdraw.
+11-03-2020 21:00:39 WARN  UserDaoImpl:124 - Invalid username or password.
 
-10-30-2020 16:32:10 ERROR Main:274 - mareo1997 did not have permission to access acctID: 3.
+11-03-2020 21:09:29 INFO  Main:49 - Attempting to register a profile.
 
-10-30-2020 16:42:14 INFO  Main:35 - Ended
+11-03-2020 21:10:53 INFO  Main:83 - Login attempt.
 
-10-30-2020 16:42:30 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:10:56 INFO  UserDaoImpl:205 - Customer: king successfully logged in.
 
-10-30-2020 16:42:37 INFO  Main:148 - Choose option to deposit.
+11-03-2020 21:16:54 WARN  UserDaoImpl:93 - This email or username is already registered.
 
-10-30-2020 16:42:44 ERROR Main:250 - Tried to access an unopen acctID: 2.
+11-03-2020 21:17:15 WARN  UserDaoImpl:93 - This email or username is already registered.
 
-10-30-2020 16:43:54 INFO  Main:148 - Choose option to deposit.
+11-03-2020 21:17:33 WARN  UserDaoImpl:93 - This email or username is already registered.
 
-10-30-2020 16:44:00 ERROR Main:247 - Tried to deposit $0 int acctID: 1.
+11-03-2020 21:17:53 INFO  UserDaoImpl:87 - Successfully registered userID: 1.
 
-10-30-2020 16:45:37 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:17:55 INFO  UserDaoImpl:87 - Successfully registered userID: 2.
 
-10-30-2020 16:45:40 INFO  Main:152 - Choose option to withdraw.
+11-03-2020 21:18:19 WARN  UserDaoImpl:93 - This email or username is already registered.
 
-10-30-2020 16:45:48 ERROR Main:272 - mareo1997 did not have permission to access acctID: 3.
+11-03-2020 21:18:53 INFO  UserDaoImpl:87 - Successfully registered userID: 1.
 
-10-30-2020 16:46:12 INFO  Main:152 - Choose option to withdraw.
+11-03-2020 21:18:54 WARN  UserDaoImpl:93 - This email or username is already registered.
 
-10-30-2020 16:46:15 ERROR Main:272 - mareo1997 did not have permission to access acctID: 0.
+11-03-2020 21:20:43 INFO  Main:49 - Attempting to register a profile.
 
-10-30-2020 16:48:12 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:21:42 INFO  Main:49 - Attempting to register a profile.
 
-10-30-2020 16:48:15 INFO  Main:152 - Choose option to withdraw.
+11-03-2020 21:21:50 INFO  UserDaoImpl:87 - Successfully registered userID: 1.
 
-10-30-2020 16:48:21 ERROR Main:273 - mareo1997 did not have permission to access acctID: 0.
+11-03-2020 21:30:57 INFO  Main:91 - Login attempt.
 
-10-30-2020 16:56:53 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:30:59 WARN  UserDaoImpl:213 - Invalid username or password.
 
-10-30-2020 16:56:56 INFO  Main:152 - Choose option to withdraw.
+11-03-2020 21:31:17 INFO  Main:91 - Login attempt.
 
-10-30-2020 16:57:09 ERROR Main:274 - com.revature.exceptions.UnOpenException: Can't perform transaction on unopen accounts Tried to access unopen acctID: 2.
+11-03-2020 21:31:19 INFO  UserDaoImpl:206 - Customer: mareo1997 successfully logged in.
 
-10-30-2020 17:29:41 ERROR Main:107 - Invalid username or password.
+11-03-2020 21:31:19 INFO  Main:115 - mareo1997 is in Customer Menu.
 
-10-30-2020 17:36:15 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:38:44 INFO  Main:91 - Login attempt.
 
-10-30-2020 17:36:20 INFO  Main:144 - Choose option to open account.
+11-03-2020 21:38:47 INFO  UserDaoImpl:206 - Customer: mareo1997 successfully logged in.
 
-10-30-2020 17:36:34 ERROR Main:210 - Failure to open account.
+11-03-2020 21:38:47 INFO  Main:115 - mareo1997 is in Customer Menu.
 
-10-30-2020 17:37:49 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:38:59 INFO  Main:144 - Choose option to open account.
 
-10-30-2020 17:37:54 INFO  Main:144 - Choose option to open account.
+11-03-2020 21:38:59 INFO  Main:177 - mareo1997 attempting to open account.
 
-10-30-2020 17:38:01 ERROR Main:210 - Failure to open account.
+11-03-2020 21:39:38 INFO  Main:201 - Attempting to identify user to open an account.
 
-10-30-2020 17:39:56 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:39:40 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 17:39:57 INFO  Main:144 - Choose option to open account.
+11-03-2020 21:39:40 INFO  Main:210 - Attempting to open account.
 
-10-30-2020 17:40:08 ERROR Main:210 - Failure to open account.
+11-03-2020 21:39:42 INFO  AccountDaoImpl:104 - Successfully opened account number: 1 Approval Pending.
 
-10-30-2020 17:46:55 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 21:43:38 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 17:47:00 INFO  Main:144 - Choose option to open account.
+11-03-2020 21:43:40 INFO  AccountDaoImpl:101 - Successfully opened AcctID: 2 Approval Pending.
+11-03-2020 21:43:42 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 17:47:09 INFO  Main:205 - Successfully opened account number: 1 Approval Pending.
+11-03-2020 21:43:44 INFO  AccountDaoImpl:101 - Successfully opened AcctID: 3 Approval Pending.
+11-03-2020 21:43:46 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 17:49:48 INFO  Main:160 - Logged out.
+11-03-2020 21:43:47 INFO  AccountDaoImpl:101 - Successfully opened AcctID: 4 Approval Pending.
+11-03-2020 21:43:50 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 17:49:53 ERROR Main:107 - Invalid username or password.
+11-03-2020 21:43:51 INFO  AccountDaoImpl:101 - Successfully opened AcctID: 5 Approval Pending.
+11-03-2020 21:43:52 WARN  AccountDaoImpl:106 - org.postgresql.util.PSQLException: ERROR: insert or update on table "account" violates foreign key constraint "account_ownerid_fkey"
+  Detail: Key (ownerid)=(0) is not present in table "bankuser".
+11-03-2020 21:51:35 INFO  AccountDaoImpl:129 - Identified account.
 
-10-30-2020 17:58:40 ERROR Main:107 - Invalid username or password.
+11-03-2020 21:51:36 WARN  AccountDaoImpl:138 - Account does not exist.
 
-10-30-2020 17:59:02 INFO  Main:74 - Successfully registered userID: 4.
+11-03-2020 21:52:48 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 17:59:28 INFO  Main:160 - Logged out.
+11-03-2020 21:52:49 WARN  AccountDaoImpl:138 - Account does not exist.
 
-10-30-2020 17:59:45 ERROR Main:78 - Failure to register account.
+11-03-2020 21:57:03 INFO  AccountDaoImpl:418 - 1 is the owner of acctID: 1
+11-03-2020 21:57:52 INFO  AccountDaoImpl:418 - 1 is the owner of acctID: 1
+11-03-2020 21:57:53 INFO  AccountDaoImpl:427 - 1 is not the owner of acctID: 0
+11-03-2020 22:00:04 INFO  Main:93 - Login attempt.
 
-10-30-2020 18:02:05 INFO  Main:74 - Successfully registered userID: 6.
+11-03-2020 22:00:07 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 18:02:29 INFO  Main:160 - Logged out.
+11-03-2020 22:00:07 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 18:02:41 INFO  Main:74 - Successfully registered userID: 7.
+11-03-2020 22:00:31 INFO  Main:375 - Choose option to view customers.
 
-10-30-2020 18:03:22 ERROR Main:78 - Failure to register account.
+11-03-2020 22:02:12 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 18:05:23 ERROR Main:78 - Failure to register account.
+11-03-2020 22:04:19 INFO  Main:93 - Login attempt.
 
-10-30-2020 18:12:06 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 22:04:23 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 18:12:07 INFO  Main:144 - Choose option to open account.
+11-03-2020 22:04:23 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 18:12:14 ERROR Main:210 - Failure to open account.
+11-03-2020 22:04:27 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 18:15:53 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 22:04:27 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 18:15:53 INFO  Main:144 - Choose option to open account.
+11-03-2020 22:04:41 INFO  Main:418 - Attempting to identify account.
 
-10-30-2020 18:16:01 ERROR Main:107 - Invalid username or password.
+11-03-2020 22:04:43 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 18:23:20 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 22:04:52 INFO  Main:444 - king changed acctID: 1 status to Open.
 
-10-30-2020 18:23:21 INFO  Main:144 - Choose option to open account.
+11-03-2020 22:07:23 INFO  Main:93 - Login attempt.
 
-10-30-2020 18:29:10 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 22:07:27 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 18:29:11 INFO  Main:144 - Choose option to open account.
+11-03-2020 22:07:27 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 18:30:54 INFO  Main:98 - mareo1997 successfully logged in.
+11-03-2020 22:07:29 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 18:30:57 INFO  Main:144 - Choose option to open account.
+11-03-2020 22:07:29 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 18:34:22 INFO  Main:99 - mareo1997 successfully logged in.
+11-03-2020 22:07:33 INFO  Main:418 - Attempting to identify account.
 
-10-30-2020 18:34:24 INFO  Main:145 - Choose option to open account.
+11-03-2020 22:07:34 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 18:37:06 INFO  Main:99 - l successfully logged in.
+11-03-2020 22:07:50 INFO  Main:440 - Attempting to [Pending] acctID: 1
+11-03-2020 22:07:51 INFO  Main:448 - king changed acctID: 1 status to Pending.
 
-10-30-2020 18:37:11 INFO  Main:145 - Choose option to open account.
+11-03-2020 22:13:33 INFO  Main:36 - Ended
 
-10-30-2020 18:37:20 INFO  Main:212 - Successfully opened account number: 5 Approval Pending.
-10-30-2020 18:56:21 ERROR Main:79 - This email or username is already registered.
+11-03-2020 22:13:43 INFO  Main:93 - Login attempt.
 
-10-30-2020 19:56:52 INFO  Main:75 - Successfully registered userID: 6.
+11-03-2020 22:13:46 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 20:01:35 ERROR Main:81 - This email or username is already registered.
+11-03-2020 22:13:46 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 21:10:17 ERROR Main:80 - This email or username is already registered.
+11-03-2020 22:13:51 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 21:11:09 ERROR Main:80 - This email or username is already registered.
+11-03-2020 22:13:51 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 21:11:37 ERROR Main:80 - This email or username is already registered.
+11-03-2020 22:13:55 INFO  Main:418 - Attempting to identify account.
 
-10-30-2020 21:12:39 INFO  Main:76 - Successfully registered userID: 1.
+11-03-2020 22:13:56 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 21:13:06 INFO  Main:162 - Logged out.
+11-03-2020 22:14:02 INFO  Main:440 - Attempting to [Denied] acctID: 1
+11-03-2020 22:14:03 INFO  AccountDaoImpl:310 - Successfully changed acctID: 1 status to [Denied].
 
-10-30-2020 21:13:27 INFO  Main:76 - Successfully registered userID: 2.
+11-03-2020 22:14:03 INFO  Main:449 - king changed acctID: 1 status to Denied.
 
-10-30-2020 21:14:43 INFO  Main:76 - Successfully registered userID: 1.
+11-03-2020 22:15:48 INFO  AccountDaoImpl:310 - Successfully changed acctID: 1 status to [Open].
 
-10-30-2020 21:14:48 INFO  Main:162 - Logged out.
+11-03-2020 22:15:50 INFO  AccountDaoImpl:310 - Successfully changed acctID: 4 status to [Open].
 
-10-30-2020 21:15:02 ERROR Main:80 - This email or username is already registered.
+11-03-2020 22:15:52 INFO  AccountDaoImpl:129 - Identified acctID: 2.
 
-10-30-2020 21:18:22 ERROR Main:109 - Invalid username or password.
+11-03-2020 22:21:22 INFO  Main:93 - Login attempt.
 
-10-30-2020 21:19:15 ERROR Main:109 - Invalid username or password.
+11-03-2020 22:21:25 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 21:19:32 INFO  Main:76 - Successfully registered userID: 3.
+11-03-2020 22:21:25 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 21:19:46 INFO  Main:162 - Logged out.
+11-03-2020 22:21:26 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 21:19:52 ERROR Main:109 - Invalid username or password.
+11-03-2020 22:21:26 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 21:20:34 INFO  Main:76 - Successfully registered userID: 4.
+11-03-2020 22:21:28 INFO  Main:418 - Attempting to identify account.
 
-10-30-2020 21:20:42 INFO  Main:162 - Logged out.
+11-03-2020 22:21:29 WARN  AccountDaoImpl:138 - Account does not exist.
 
-10-30-2020 21:20:50 INFO  Main:100 - e successfully logged in.
+11-03-2020 22:22:55 INFO  Main:93 - Login attempt.
 
-10-30-2020 21:21:21 INFO  Main:146 - Choose option to open account.
+11-03-2020 22:22:58 INFO  UserDaoImpl:206 - Admin: king successfully logged in.
 
-10-30-2020 21:21:39 INFO  Main:146 - Choose option to open account.
+11-03-2020 22:22:58 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 21:21:54 INFO  Main:210 - Successfully opened account number: 1 Approval Pending.
-10-30-2020 21:22:24 INFO  Main:150 - Choose option to deposit.
+11-03-2020 22:22:59 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 21:22:30 ERROR Main:236 - mareo1997 did not have permission to access acctID: 4.
+11-03-2020 22:22:59 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 21:22:41 INFO  Main:150 - Choose option to deposit.
+11-03-2020 22:23:02 INFO  Main:418 - Attempting to identify account.
 
-10-30-2020 21:22:46 ERROR Main:243 - com.revature.exceptions.UnOpenException: Can't perform transaction on unopen accounts Tried to access unopen acctID: 1.
+11-03-2020 22:23:03 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 21:24:27 INFO  Main:162 - Logged out.
+11-03-2020 22:23:13 INFO  Main:440 - Attempting to [Close] acctID: 1.
 
-10-30-2020 21:24:33 INFO  Main:100 - king successfully logged in.
+11-03-2020 22:23:14 INFO  AccountDaoImpl:129 - Identified acctID: 1.
 
-10-30-2020 21:25:00 INFO  Main:103 - Admin: king successful logged in.
+11-03-2020 22:23:14 INFO  AccountDaoImpl:325 - Attempting to close acctID: 1
+11-03-2020 22:23:17 INFO  UserDaoImpl:121 - Identified Customer: mareo1997
 
-10-30-2020 21:25:12 INFO  Main:348 - Choose option to view customers.
+11-03-2020 22:23:17 INFO  Main:449 - king changed acctID: 1 status to Close.
 
-10-30-2020 21:25:27 INFO  Main:352 - Choose option to approve or deny accounts.
+11-03-2020 22:26:31 INFO  Main:93 - Login attempt.
 
-10-30-2020 21:25:48 INFO  Main:411 - king changed acctID: 1 status to Open.
+11-03-2020 22:26:34 INFO  UserDaoImpl:207 - Admin: king successfully logged in.
 
-10-30-2020 21:25:59 INFO  Main:356 - Choose option to perform transactions on accounts.
+11-03-2020 22:26:34 INFO  Main:349 - Admin king is in Employee Menu.
 
-10-30-2020 21:26:05 INFO  Main:450 - Choose option to deposit.
+11-03-2020 22:26:40 INFO  Main:379 - Choose option to approve or deny accounts.
 
-10-30-2020 21:26:14 INFO  Main:232 - king deposited $500.0 into acctID: 1.
+11-03-2020 22:26:40 INFO  Main:412 - Admin: king attempting to change account status.
 
-10-30-2020 21:26:25 INFO  Main:462 - Logged out.
+11-03-2020 22:26:44 INFO  Main:418 - Attempting to identify account.
+
+11-03-2020 22:26:46 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 22:26:54 INFO  Main:440 - Attempting to [Close] acctID: 2.
+
+11-03-2020 22:26:55 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 22:26:55 INFO  AccountDaoImpl:325 - Attempting to close acctID: 2
+11-03-2020 22:26:56 INFO  AccountDaoImpl:342 - Successfully closed acctID: 2.
+
+11-03-2020 22:26:58 INFO  UserDaoImpl:122 - Identified Customer: mareo1997
+
+11-03-2020 22:26:58 INFO  Main:449 - king changed acctID: 2 status to Close.
+
+11-03-2020 22:28:21 INFO  Main:379 - Choose option to approve or deny accounts.
+
+11-03-2020 22:28:21 INFO  Main:412 - Admin: king attempting to change account status.
+
+11-03-2020 22:28:22 INFO  Main:418 - Attempting to identify account.
+
+11-03-2020 22:28:24 WARN  AccountDaoImpl:138 - Account does not exist.
+
+11-03-2020 22:30:47 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:30:50 INFO  UserDaoImpl:207 - Admin: king successfully logged in.
+
+11-03-2020 22:30:50 INFO  Main:349 - Admin: king is in Employee Menu.
+
+11-03-2020 22:30:53 INFO  Main:379 - Choose option to approve or deny accounts.
+
+11-03-2020 22:30:53 INFO  Main:412 - Admin: king attempting to change account status.
+
+11-03-2020 22:30:54 INFO  Main:419 - Attempting to identify account.
+
+11-03-2020 22:30:55 WARN  AccountDaoImpl:138 - Account does not exist.
+
+11-03-2020 22:30:55 WARN  Main:452 - acctID: 0 does not exist.
+
+11-03-2020 22:35:50 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:35:53 INFO  UserDaoImpl:207 - Admin: king successfully logged in.
+
+11-03-2020 22:35:53 INFO  Main:350 - Admin: king is in Employee Menu.
+
+11-03-2020 22:35:59 INFO  Main:384 - Choose option to perform transactions on accounts.
+
+11-03-2020 22:35:59 INFO  Main:463 - Admin: king is attempting to update accounts.
+
+11-03-2020 22:36:08 INFO  Main:488 - Choose option to deposit.
+
+11-03-2020 22:36:18 INFO  Main:236 - Attempting to validate if 3 owns acctID: 0
+11-03-2020 22:36:22 INFO  AccountDaoImpl:439 - 3 is not the owner of acctID: 0
+11-03-2020 22:37:09 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:37:13 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:37:13 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:37:18 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:37:21 INFO  Main:236 - Attempting to validate if 1 owns acctID: 0
+11-03-2020 22:37:23 INFO  AccountDaoImpl:439 - 1 is not the owner of acctID: 0
+11-03-2020 22:37:23 WARN  Main:250 - mareo1997 did not have permission to access acctID: 0.
+
+11-03-2020 22:37:30 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:37:31 INFO  Main:236 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:37:32 INFO  AccountDaoImpl:430 - 1 is the owner of acctID: 1
+11-03-2020 22:38:20 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:38:21 INFO  Main:247 - mareo1997 deposited $500.0 into acctID: 1.
+
+11-03-2020 22:40:29 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:40:32 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:40:32 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:40:36 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:40:42 INFO  Main:236 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:40:43 INFO  AccountDaoImpl:430 - userID: 1 is the owner of acctID: 1
+11-03-2020 22:40:48 INFO  Main:244 - mareo1997 is attempting to deposit $500.0 in acctID: 1
+11-03-2020 22:40:49 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:40:50 INFO  Main:250 - mareo1997 deposited $500.0 into acctID: 1.
+
+11-03-2020 22:43:00 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:43:04 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:43:04 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:43:05 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:43:07 INFO  Main:236 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:43:08 INFO  AccountDaoImpl:434 - userID: 1 is the owner of acctID: 1
+11-03-2020 22:43:10 INFO  Main:244 - mareo1997 is attempting to deposit $500.0 in acctID: 1
+11-03-2020 22:43:11 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:43:12 INFO  AccountDaoImpl:208 - acctID: 1 new balance: 6500.0
+11-03-2020 22:43:12 INFO  Main:250 - mareo1997 deposited $500.0 into acctID: 1.
+
+11-03-2020 22:44:11 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:44:14 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:44:14 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:44:17 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:44:20 INFO  Main:236 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:44:21 INFO  AccountDaoImpl:434 - userID: 1 is the owner of acctID: 1
+11-03-2020 22:44:25 INFO  Main:244 - mareo1997 is attempting to deposit $500.0 in acctID: 1
+11-03-2020 22:44:26 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:44:27 INFO  AccountDaoImpl:208 - acctID: 1 old balance: 7000.0 new balance: 7000.0
+11-03-2020 22:44:27 INFO  Main:250 - mareo1997 deposited $500.0 into acctID: 1.
+
+11-03-2020 22:46:01 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:46:04 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:46:04 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:46:05 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:46:08 INFO  Main:236 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:46:09 INFO  AccountDaoImpl:433 - userID: 1 is the owner of acctID: 1
+11-03-2020 22:46:16 INFO  Main:244 - mareo1997 is attempting to deposit $1000.0 in acctID: 1
+11-03-2020 22:46:18 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:46:19 INFO  AccountDaoImpl:207 - acctID: 1 old balance: 7000.0 new balance: 8000.0
+11-03-2020 22:46:19 INFO  Main:250 - mareo1997 deposited $1000.0 into acctID: 1.
+
+11-03-2020 22:46:43 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:46:44 INFO  Main:236 - Attempting to validate if 1 owns acctID: 0
+11-03-2020 22:46:46 INFO  AccountDaoImpl:442 - 1 is not the owner of acctID: 0
+11-03-2020 22:46:46 WARN  Main:253 - mareo1997 did not have permission to access acctID: 0.
+
+11-03-2020 22:48:40 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:48:40 INFO  Main:236 - Attempting to validate if 1 owns acctID: 2
+11-03-2020 22:48:42 INFO  AccountDaoImpl:433 - userID: 1 is the owner of acctID: 2
+11-03-2020 22:48:45 INFO  Main:244 - mareo1997 is attempting to deposit $500.0 in acctID: 2
+11-03-2020 22:48:46 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 22:48:46 WARN  Main:260 - Tried to access unopen acctID: 2.
+
+11-03-2020 22:49:11 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:49:14 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:49:14 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:49:16 INFO  Main:151 - Choose option to deposit.
+
+11-03-2020 22:49:18 INFO  Main:236 - Attempting to validate if 1 owns acctID: 2
+11-03-2020 22:49:19 INFO  AccountDaoImpl:437 - userID: 1 is the owner of acctID: 2
+11-03-2020 22:49:26 INFO  Main:244 - mareo1997 is attempting to deposit $500.0 in acctID: 2
+11-03-2020 22:49:27 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 22:49:27 WARN  AccountDaoImpl:220 - Can't perform transaction on unopen accounts.
+
+11-03-2020 22:49:27 WARN  Main:260 - Tried to access unopen acctID: 2.
+
+11-03-2020 22:50:51 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:50:53 INFO  AccountDaoImpl:207 - acctID: 1 old balance: $8000.0 new balance: $13000.0
+11-03-2020 22:50:54 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:50:56 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:51:39 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 22:51:39 WARN  AccountDaoImpl:220 - Can't perform transaction on unopen accounts.
+
+11-03-2020 22:54:07 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:54:07 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:54:09 INFO  AccountDaoImpl:207 - acctID: 1 old balance: $5000.0 new balance: $8000.0
+11-03-2020 22:54:10 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:54:11 INFO  AccountDaoImpl:241 - acctID: 1 old balance: $8000.0 new balance: $6000.0
+11-03-2020 22:54:12 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:58:45 INFO  Main:93 - Login attempt.
+
+11-03-2020 22:58:49 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 22:58:49 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 22:58:56 INFO  Main:155 - Choose option to withdraw.
+
+11-03-2020 22:58:58 INFO  Main:276 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 22:58:59 INFO  AccountDaoImpl:443 - userID: 1 is the owner of acctID: 1
+11-03-2020 22:59:10 INFO  Main:284 - mareo1997 is attempting to withdraw $100.0 in acctID: 1.
+
+11-03-2020 22:59:11 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 22:59:12 INFO  AccountDaoImpl:241 - acctID: 1 old balance: $6000.0 new balance: $5900.0
+11-03-2020 22:59:12 INFO  Main:289 - mareo1997 withdrew $100.0 from acctID: 1.
+
+11-03-2020 23:01:03 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:01:04 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:01:05 INFO  AccountDaoImpl:207 - acctID: 1 old balance: $5900.0 new balance: $8900.0
+11-03-2020 23:01:06 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:01:07 INFO  AccountDaoImpl:241 - acctID: 1 old balance: $8900.0 new balance: $6900.0
+11-03-2020 23:01:08 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:10:22 INFO  Main:93 - Login attempt.
+
+11-03-2020 23:10:26 INFO  UserDaoImpl:207 - Customer: mareo1997 successfully logged in.
+
+11-03-2020 23:10:26 INFO  Main:118 - mareo1997 is in Customer Menu.
+
+11-03-2020 23:10:32 INFO  Main:159 - Choose option to transfer.
+
+11-03-2020 23:10:39 INFO  Main:317 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 23:10:40 INFO  AccountDaoImpl:456 - userID: 1 is the owner of acctID: 1
+11-03-2020 23:10:44 INFO  Main:325 - mareo1997 is attempting to transfer $5.0 from acctID: 1 to acctID: 3.
+
+11-03-2020 23:10:45 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:10:47 WARN  Main:339 - Either acctID: 1 or acctID: 3 does not exist.
+
+11-03-2020 23:11:00 INFO  Main:159 - Choose option to transfer.
+
+11-03-2020 23:11:03 INFO  Main:317 - Attempting to validate if 1 owns acctID: 1
+11-03-2020 23:11:04 INFO  AccountDaoImpl:456 - userID: 1 is the owner of acctID: 1
+11-03-2020 23:11:10 INFO  Main:325 - mareo1997 is attempting to transfer $100.0 from acctID: 1 to acctID: 2.
+
+11-03-2020 23:11:11 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:11:12 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:11:13 INFO  AccountDaoImpl:289 - acctID: 1 old balance: $5000.0 new balance: $4900.0
+11-03-2020 23:11:13 INFO  AccountDaoImpl:290 - acctID: 2 old balance: $6000.0 new balance: $6100.0
+11-03-2020 23:11:13 INFO  Main:331 - mareo1997 transfered $100.0 from acctID: 1 to acctID: 2.
+
+11-03-2020 23:12:00 INFO  Main:159 - Choose option to transfer.
+
+11-03-2020 23:12:04 INFO  Main:317 - Attempting to validate if 1 owns acctID: 5
+11-03-2020 23:12:06 INFO  AccountDaoImpl:465 - 1 is not the owner of acctID: 5
+11-03-2020 23:12:06 WARN  Main:335 - mareo1997 did not have permission to access acctID: 5.
+
+11-03-2020 23:13:11 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:12 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:13 INFO  AccountDaoImpl:207 - acctID: 1 old balance: $4900.0 new balance: $7900.0
+11-03-2020 23:13:14 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:15 INFO  AccountDaoImpl:242 - acctID: 1 old balance: $7900.0 new balance: $5900.0
+11-03-2020 23:13:15 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:16 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:13:18 INFO  AccountDaoImpl:289 - acctID: 1 old balance: $5900.0 new balance: $4900.0
+11-03-2020 23:13:18 INFO  AccountDaoImpl:290 - acctID: 2 old balance: $6100.0 new balance: $7100.0
+11-03-2020 23:13:19 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:13:20 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:21 INFO  AccountDaoImpl:289 - acctID: 2 old balance: $7100.0 new balance: $6100.0
+11-03-2020 23:13:21 INFO  AccountDaoImpl:290 - acctID: 1 old balance: $4900.0 new balance: $5900.0
+11-03-2020 23:13:22 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:13:23 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:13:23 WARN  AccountDaoImpl:216 - Can't deposit $0 into an account.
+
+11-03-2020 23:14:43 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:14:44 INFO  AccountDaoImpl:207 - acctID: 2 old balance: $6100.0 new balance: $11100.0
+11-03-2020 23:18:56 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:18:57 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:18:59 INFO  AccountDaoImpl:207 - acctID: 1 old balance: $5900.0 new balance: $8900.0
+11-03-2020 23:19:00 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:19:01 INFO  AccountDaoImpl:242 - acctID: 1 old balance: $8900.0 new balance: $6900.0
+11-03-2020 23:19:02 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:19:03 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:19:04 INFO  AccountDaoImpl:289 - acctID: 1 old balance: $6900.0 new balance: $5900.0
+11-03-2020 23:19:04 INFO  AccountDaoImpl:290 - acctID: 2 old balance: $11100.0 new balance: $12100.0
+11-03-2020 23:19:05 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:19:06 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:19:07 INFO  AccountDaoImpl:289 - acctID: 2 old balance: $12100.0 new balance: $11100.0
+11-03-2020 23:19:07 INFO  AccountDaoImpl:290 - acctID: 1 old balance: $5900.0 new balance: $6900.0
+11-03-2020 23:19:08 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:19:09 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:19:09 WARN  AccountDaoImpl:216 - Can't deposit $0 into an account.
+
+11-03-2020 23:20:25 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:20:26 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:20:28 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:20:28 WARN  AccountDaoImpl:249 - Withdraw cannot be greater than account.
+
+11-03-2020 23:22:35 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:22:36 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:22:36 WARN  AccountDaoImpl:216 - Can't deposit $0 into an account.
+
+11-03-2020 23:23:54 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:23:55 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:23:55 WARN  AccountDaoImpl:249 - Withdraw cannot be greater than account.
+
+11-03-2020 23:25:56 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:25:57 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:25:59 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:26:00 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:26:00 WARN  AccountDaoImpl:298 - Withdraw cannot be greater than account.
+
+11-03-2020 23:26:35 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:26:36 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:26:38 INFO  AccountDaoImpl:129 - Identified acctID: 2.
+
+11-03-2020 23:26:39 INFO  AccountDaoImpl:129 - Identified acctID: 1.
+
+11-03-2020 23:26:39 WARN  AccountDaoImpl:298 - Withdraw cannot be greater than account.
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import com.revature.model.Account;
@@ -25,6 +26,8 @@ public class UserDaoImpl implements UserDao {
 	public PreparedStatement ps;
 	public ResultSet rs;
 
+	private static Logger log = Logger.getLogger(UserDaoImpl.class);
+
 	static {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -40,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 		ArrayList<Role> roles = new ArrayList<>();
 		User user = null;
 		Role r;
-		System.out.println("a");
+
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 			sql = "INSERT INTO Roles(bankrole) VALUES (?)";
 
@@ -54,10 +57,10 @@ public class UserDaoImpl implements UserDao {
 
 			while (rs.next()) {
 				roles.add(new Role(rs.getInt(1), rs.getString(2)));
-				System.out.println(roles);
+				// System.out.println(roles);
 			}
 			r = roles.get(roles.size() - 1);
-			System.out.println(r);
+			// System.out.println(r);
 
 			sql = "INSERT INTO bankuser(username, bankpassword, firstname, lastname, email,roleid) VALUES (?,?,?,?,?,?)";
 			// Adds to user table
@@ -79,14 +82,18 @@ public class UserDaoImpl implements UserDao {
 				r = new Role(rs.getInt(8), rs.getString(9));
 				user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
+
+				System.out.println();
+				log.info("Successfully registered userID: " + user.getUsername() + ".\n");
+
 			}
 
 		} catch (PSQLException e) {
-			user = null;
-			// System.out.println(e);
+			System.out.println();
+			log.warn("This email or username is already registered.\n");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
 		System.out.println(user);
 		return user;
@@ -108,15 +115,19 @@ public class UserDaoImpl implements UserDao {
 				Role r = new Role(rs.getInt(8), rs.getString(9));
 				User i = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r);
-				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);//System.out.println(AccountList+"\n");
+				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);// System.out.println(AccountList+"\n");
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
+				System.out.println();
+				log.info("Identified " + r.getRole() + ": " + u.getUsername() + "\n");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
 		if (u == null) {
+			System.out.println();
+			log.warn("Invalid username or password.\n");
 			throw new NullPointerException();
 		}
 		return u;
@@ -156,7 +167,7 @@ public class UserDaoImpl implements UserDao {
 		AccountService acctserv = new AccountServiceImpl();
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
-			sql = "select * from bankuser b full outer join roles r on b.roleid =r.roleid where r.bankrole ='Customer'";
+			sql = "select * from bankuser b full outer join roles r on b.roleid =r.roleid where r.bankrole ='Customer' and Username is not null";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -194,15 +205,18 @@ public class UserDaoImpl implements UserDao {
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
+				System.out.println();
+				log.info(rs.getString(9) + ": " + username + " successfully logged in.\n");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		if (u == null) {
+			System.out.println();
+			log.warn("Invalid username or password.\n");
 			throw new NullPointerException();
 		}
-
 		return u;
 	}
 

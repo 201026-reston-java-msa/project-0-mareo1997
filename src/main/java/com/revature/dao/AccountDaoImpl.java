@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import com.revature.exceptions.DepositException;
@@ -30,6 +31,8 @@ public class AccountDaoImpl implements AccountDao {
 	public PreparedStatement ps;
 	public ResultSet rs;
 
+	private static Logger log = Logger.getLogger(AccountDaoImpl.class);
+
 	static {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -40,9 +43,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public Account insertAccount(Account a, User u) {
-		System.out.println(a);
-		System.out.println(u);
+	public Account insertAccount(Account a, User u) {// System.out.println(a);//System.out.println(u);
 		Account acct = null;
 		AccountStatus status;
 		AccountType type;
@@ -54,8 +55,7 @@ public class AccountDaoImpl implements AccountDao {
 			sql = "INSERT INTO accountstatus(status) VALUES (?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, "Pending");
-			ps.executeUpdate();
-			System.out.println(ps);
+			ps.executeUpdate();// System.out.println(ps);
 
 			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
 			ps = conn.prepareStatement(sql);
@@ -96,16 +96,19 @@ public class AccountDaoImpl implements AccountDao {
 				AccountStatus s = new AccountStatus(rs.getInt(6), rs.getString(7));
 				AccountType t = new AccountType(rs.getInt(8), rs.getString(9));
 				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
-				System.out.println(acct);
 				u.addAccount(acct);
+
+				System.out.println();
+				log.info("Successfully opened AcctID: " + acct.getAccountId() + " Approval Pending.\n");
+				System.out.println(acct);
 			}
 		} catch (PSQLException e) {
-			acct = null;
-			System.out.println(e);
+			System.out.println();
+			log.warn(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
-		System.out.println(acct);
 		return acct;
 	}
 
@@ -123,13 +126,17 @@ public class AccountDaoImpl implements AccountDao {
 				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
 				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
 				a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
+				System.out.println();
+				log.info("Identified acctID: " + a.getAccountId() + ".\n");
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
 		if (a == null) {
+			System.out.println();
+			log.warn("Account does not exist.\n");
 			throw new NullPointerException();
 		}
 		return a;
@@ -185,9 +192,8 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public double deposit(int id, double b) {
-		double balance = 0;
 		Account a = selectAccountById(id);
-		balance = a.getBalance();
+		double balance = a.getBalance(), oldbal = a.getBalance();
 
 		if (a.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0) {
@@ -197,14 +203,23 @@ public class AccountDaoImpl implements AccountDao {
 					sql = "UPDATE account set balance = " + a.getBalance() + " where accountid=" + a.getAccountId();
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+
+					System.out.println();
+					log.info("acctID: " + a.getAccountId() + " old balance: $" + oldbal + " new balance: $"
+							+ a.getBalance());// }
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
-				throw new DepositException("Can't deposit $0 into an account.\n");
+				System.out.println();
+				log.warn("Can't deposit $0 into an account.\n");
+				throw new DepositException("Can't deposit $0 into an account.");
 			}
 		} else {
+			System.out.println();
+			log.warn("Can't perform transaction on unopen accounts.\n");
 			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return balance;
@@ -212,9 +227,8 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public double withdraw(int id, double b) {
-		double balance = 0;
 		Account a = selectAccountById(id);
-		balance = a.getBalance();// money in the account
+		double balance = a.getBalance(), oldbal = a.getBalance();
 
 		if (a.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance >= b) {
@@ -224,13 +238,21 @@ public class AccountDaoImpl implements AccountDao {
 					sql = "UPDATE account set balance = " + a.getBalance() + " where accountid=" + a.getAccountId();
 					ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+
+					System.out.println();
+					log.info("acctID: " + a.getAccountId() + " old balance: $" + oldbal + " new balance: $"
+							+ a.getBalance());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			} else {
+				System.out.println();
+				log.warn("Withdraw cannot be greater than account.\n");
 				throw new OverDraftException("Withdraw cannot be greater than account");
 			}
 		} else {
+			System.out.println();
+			log.warn("Can't perform transaction on unopen accounts.\n");
 			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return balance;
@@ -241,8 +263,8 @@ public class AccountDaoImpl implements AccountDao {
 		// TODO Auto-generated method stub
 		Account a1 = selectAccountById(from);
 		Account a2 = selectAccountById(to);
-		double balance1 = a1.getBalance();
-		double balance2 = a2.getBalance();
+		double balance1 = a1.getBalance(), oldbal1 = a1.getBalance();
+		double balance2 = a2.getBalance(), oldbal2 = a2.getBalance();
 		double bal = 0;
 
 		if (a1.getStatus().getStatus().equalsIgnoreCase("open")
@@ -263,14 +285,23 @@ public class AccountDaoImpl implements AccountDao {
 					ps.executeUpdate();
 
 					bal = 1;// Success
+
+					System.out.println();
+					log.info("acctID: " + from + " old balance: $" + oldbal1 + " new balance: $" + a1.getBalance());
+					log.info("acctID: " + to + " old balance: $" + oldbal2 + " new balance: $" + a2.getBalance());
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
+				System.out.println();
+				log.warn("Withdraw cannot be greater than account.\n");
 				throw new OverDraftException("Withdraw cannot be greater than account");
 			}
 		} else {
+			System.out.println();
+			log.warn("Can't perform transaction on unopen accounts.\n");
 			throw new UnOpenException("Can't perform transaction on unopen accounts");
 		}
 		return bal;
@@ -298,6 +329,13 @@ public class AccountDaoImpl implements AccountDao {
 					AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
 					AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
 					a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
+
+					System.out.println(
+							"Successfully changed acctID: " + a.getAccountId() + " status to [" + as.getStatus() + "]");
+					System.out.println(a);
+					log.info("Successfully changed acctID: " + a.getAccountId() + " status to [" + as.getStatus()
+							+ "].\n");
+
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -309,6 +347,9 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public Account cancelAccount(Account a) { // TODO Auto-generated
 		UserService userserv = new UserServiceImpl();
+
+		System.out.println();
+		log.info("Attempting to close acctID: " + a.getAccountId());
 
 		a.getStatus().setStatus("Close");
 		AccountStatus s = new AccountStatus(a.getStatus().getStatusId(), a.getStatus().getStatus());
@@ -324,10 +365,14 @@ public class AccountDaoImpl implements AccountDao {
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
 
+			System.out.println("Successfully closed acctID: " + a.getAccountId());
+			log.info("Successfully closed acctID: " + a.getAccountId() + ".\n");
+
 			User u = userserv.getUser(a.getOwnerid());
 			System.out.println(u);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
 		return ac;
 	}
@@ -408,11 +453,17 @@ public class AccountDaoImpl implements AccountDao {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if (rs.next()) {
+				System.out.println();
+				log.info("userID: " + i + " is the owner of acctID: " + id);
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println();
+			log.error("Incorrect SQL syntax.\n");
 		}
+
+		System.out.println();
+		log.info(i + " is not the owner of acctID: " + id);
 		return false;
 	}
 }

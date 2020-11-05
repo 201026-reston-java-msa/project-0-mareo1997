@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import com.revature.exceptions.DepositException;
+import com.revature.exceptions.MinimumDepositException;
 import com.revature.exceptions.OverDraftException;
 import com.revature.exceptions.UnOpenException;
 import com.revature.model.Account;
@@ -39,6 +40,7 @@ public class AccountDaoImpl implements AccountDao {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Static block has failed");
+			log.warn(e + "\n");
 		}
 	}
 
@@ -47,20 +49,52 @@ public class AccountDaoImpl implements AccountDao {
 		Account acct = null;
 		AccountStatus status;
 		AccountType type;
+		ArrayList<Account> AccountList = new ArrayList<>();
 		ArrayList<AccountType> typelist = new ArrayList<>();
 		ArrayList<AccountStatus> statuslist = new ArrayList<>();
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "INSERT INTO accountstatus(status) VALUES (?)";
+			if (a.getBalance() < 500) {
+				System.out.println();
+				log.warn("Cant open an account with less than $500.00.\n");
+				throw new MinimumDepositException("Cant open an account with less than $500.00");
+			}
+
+			System.out.println();
+			log.info("Generating insert account sql statement.\n");
+
+			sql = "INSERT INTO account(balance,ownerid) values (?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, a.getBalance());
+			ps.setInt(2, u.getUserId());
+			ps.executeUpdate();
+
+			System.out.println();
+			log.info("Generated new account.\n");
+			log.info("Generating new status.\n");
+
+			sql = "select * from account where ownerid='" + u.getUserId() + "'";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), rs.getInt(3)));
+			}
+			acct = AccountList.get(AccountList.size() - 1);
+
+			System.out.println();
+			log.info("Generating insert status sql statement.\n");
+
+			sql = "INSERT INTO accountstatus(status,acctid) VALUES (?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, "Pending");
-			ps.executeUpdate();// System.out.println(ps);
-
-			sql = "INSERT INTO accounttype(accttype) VALUES (?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, a.getType().getType());
+			ps.setInt(2, acct.getAccountId());
 			ps.executeUpdate();
+
+			System.out.println();
+			log.info("Generated new status.\n");
+			log.info("Generating new type.\n");
 
 			sql = "select * from accountstatus where status='Pending'";
 			ps = conn.prepareStatement(sql);
@@ -70,6 +104,18 @@ public class AccountDaoImpl implements AccountDao {
 			}
 			status = statuslist.get(statuslist.size() - 1);
 
+			System.out.println();
+			log.info("Generating insert type sql statement.\n");
+
+			sql = "INSERT INTO accounttype(accttype,acctid) VALUES (?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, a.getType().getType());
+			ps.setInt(2, acct.getAccountId());
+			ps.executeUpdate();
+
+			System.out.println();
+			log.info("Generated new type.\n");
+
 			sql = "select * from accounttype";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -78,36 +124,36 @@ public class AccountDaoImpl implements AccountDao {
 			}
 			type = typelist.get(typelist.size() - 1);
 
-			sql = "insert into account(balance, statusid, typeid, ownerid) values (?,?,?,?)";// Adds to user table
-			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, a.getBalance());
-			ps.setInt(2, status.getStatusId());
-			ps.setInt(3, type.getTypeId());
-			ps.setInt(4, u.getUserId());
-			ps.executeUpdate();
+			System.out.println();
+			log.info("Generated new type.\n");
+			log.info("Generating new account.\n");
 
-			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid "
-					+ "where a.ownerid=" + u.getUserId() + " and a2.statusid =" + status.getStatusId()
-					+ " and a3.typeid =" + type.getTypeId();
+			sql = "select * from account a " + "full join accountstatus a2 on a.accountid = a2.acctid "
+					+ "FULL JOIN accounttype a3 ON a2.acctid = a3.acctid " + "WHERE a.accountid=" + acct.getAccountId()
+					+ " and a2.statusid=" + status.getStatusId() + " and a3.typeid=" + type.getTypeId();
+
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				AccountStatus s = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType t = new AccountType(rs.getInt(8), rs.getString(9));
-				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(5));
+				AccountStatus s = new AccountStatus(rs.getInt(4), rs.getString(5));// System.out.println(s);
+				AccountType t = new AccountType(rs.getInt(7), rs.getString(8));// System.out.println(t);
+				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(3));
 				u.addAccount(acct);
 
 				System.out.println();
 				log.info("Successfully opened AcctID: " + acct.getAccountId() + " Approval Pending.\n");
-				System.out.println(acct);
 			}
 		} catch (PSQLException e) {
 			System.out.println();
-			log.warn(e);
+			log.warn(e + "\n");
+			throw new NullPointerException();
 		} catch (SQLException e) {
-			System.out.println();
+			System.out.println(e);
 			log.error("Incorrect SQL syntax.\n");
+		}
+		if (acct != null) {
+			System.out.println(acct);
 		}
 		return acct;
 	}
@@ -117,22 +163,23 @@ public class AccountDaoImpl implements AccountDao {
 		Account a = null;
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid where a.accountid="
+			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid where a.accountid="
 					+ id;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
-				System.out.println();
+				AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+				AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+				a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3));
+
+				System.out.println(a);
 				log.info("Identified acctID: " + a.getAccountId() + ".\n");
 			}
 
 		} catch (SQLException e) {
-			System.out.println();
-			log.error("Incorrect SQL syntax.\n");
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 		if (a == null) {
 			System.out.println();
@@ -155,13 +202,14 @@ public class AccountDaoImpl implements AccountDao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5)));
+				AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+				AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3)));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 
 		return AccountList;
@@ -173,19 +221,20 @@ public class AccountDaoImpl implements AccountDao {
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid where a.ownerid="
+			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid where a.ownerid="
 					+ u.getUserId();
 
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5)));
+				AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+				AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3)));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 		return AccountList;
 	}
@@ -209,8 +258,8 @@ public class AccountDaoImpl implements AccountDao {
 							+ a.getBalance());// }
 
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e);
+					log.warn(e + "\n");
 				}
 			} else {
 				System.out.println();
@@ -243,7 +292,8 @@ public class AccountDaoImpl implements AccountDao {
 					log.info("acctID: " + a.getAccountId() + " old balance: $" + oldbal + " new balance: $"
 							+ a.getBalance());
 				} catch (SQLException e) {
-					e.printStackTrace();
+					System.out.println(e);
+					log.warn(e + "\n");
 				}
 			} else {
 				System.out.println();
@@ -291,8 +341,8 @@ public class AccountDaoImpl implements AccountDao {
 					log.info("acctID: " + to + " old balance: $" + oldbal2 + " new balance: $" + a2.getBalance());
 
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e);
+					log.warn(e + "\n");
 				}
 			} else {
 				System.out.println();
@@ -309,10 +359,10 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account status(int sID, String status) {
-		Account a = null;
+		Account a = selectAccountById(sID);
+		;
 
 		if (status.equalsIgnoreCase("Close")) {
-			a = selectAccountById(sID);
 			a = cancelAccount(a);
 		} else {
 			try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
@@ -321,14 +371,14 @@ public class AccountDaoImpl implements AccountDao {
 				ps = conn.prepareStatement(sql);
 				ps.executeUpdate();
 
-				sql = "select * from account a " + "full join accountstatus a2 on a.statusid = a2.statusid "
-						+ "full join accounttype a3 on a.typeid =a3.typeid " + "where a2.statusid=" + sID;
+				sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid where a2.statusid="
+						+ sID;
 				ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery();
 				if (rs.next()) {
-					AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-					AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-					a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
+					AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+					AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+					a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3));
 
 					System.out.println(
 							"Successfully changed acctID: " + a.getAccountId() + " status to [" + as.getStatus() + "]");
@@ -338,7 +388,8 @@ public class AccountDaoImpl implements AccountDao {
 
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(e);
+				log.warn(e + "\n");
 			}
 		}
 		return a;
@@ -357,11 +408,7 @@ public class AccountDaoImpl implements AccountDao {
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "delete from accountstatus where statusid=" + a.getStatus().getStatusId();
-			ps = conn.prepareStatement(sql);
-			ps.executeUpdate();
-
-			sql = "delete from accounttype where typeid=" + a.getType().getTypeId();
+			sql = "DELETE FROM account where accountid=" + a.getAccountId();
 			ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
 
@@ -371,8 +418,8 @@ public class AccountDaoImpl implements AccountDao {
 			User u = userserv.getUser(a.getOwnerid());
 			System.out.println(u);
 		} catch (SQLException e) {
-			System.out.println();
-			log.error("Incorrect SQL syntax.\n");
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 		return ac;
 	}
@@ -391,13 +438,14 @@ public class AccountDaoImpl implements AccountDao {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5)));
+				AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+				AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3)));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 
 		return AccountList;
@@ -430,15 +478,18 @@ public class AccountDaoImpl implements AccountDao {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				AccountStatus as = new AccountStatus(rs.getInt(6), rs.getString(7));
-				AccountType at = new AccountType(rs.getInt(8), rs.getString(9));
-				a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(5));
+				AccountStatus as = new AccountStatus(rs.getInt(4), rs.getString(5));
+				AccountType at = new AccountType(rs.getInt(7), rs.getString(8));
+				a = new Account(rs.getInt(1), rs.getDouble(2), as, at, rs.getInt(3));
+
 			}
 		} catch (PSQLException e) {
-			a = null;
+			System.out.println();
+			log.warn(e + "\n");
+			throw new NullPointerException();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e);
+			log.error("Incorrect SQL syntax.\n");
 		}
 		return a;
 	}
@@ -447,7 +498,7 @@ public class AccountDaoImpl implements AccountDao {
 	public boolean isOwner(int i, int id) {
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from account a full join accountstatus a2 on a.statusid = a2.statusid full join accounttype a3 on a.typeid =a3.typeid "
+			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid "
 					+ "where a.ownerid=" + i + " and a.accountid =" + id;
 
 			ps = conn.prepareStatement(sql);
@@ -458,8 +509,8 @@ public class AccountDaoImpl implements AccountDao {
 				return true;
 			}
 		} catch (SQLException e) {
-			System.out.println();
-			log.error("Incorrect SQL syntax.\n");
+			System.out.println(e);
+			log.warn(e + "\n");
 		}
 
 		System.out.println();

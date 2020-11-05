@@ -16,6 +16,13 @@ public class Account {
 		this.type = type;
 	}
 
+	public Account(int accountId, double balance, int ownerid) {
+		super();
+		this.accountId = accountId;
+		this.balance = balance;
+		this.ownerid = ownerid;
+	}
+
 	public Account(int accountId, double balance, AccountStatus status, AccountType type, int ownerid) {
 		super();
 		this.accountId = accountId;

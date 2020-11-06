@@ -119,8 +119,11 @@ public class UserDaoImpl implements UserDao {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
 
+		System.out.println();
+		log.info("Attempting to identify user.\n");
+		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
-
+			
 			sql = "select * from bankuser b " + "full join roles r on b.userid =r.userid " + "where b.userid =" + id;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -205,6 +208,10 @@ public class UserDaoImpl implements UserDao {
 	public User userlogin(String username, String password) {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
+		
+		System.out.println();
+		log.info("Attempting to validate user.\n");
+		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			sql = "select * from bankuser b inner join roles r on r.userid = b.userid where username= '" + username

@@ -233,8 +233,9 @@ public class Main {
 	}
 
 	private static void deposit(User u) {
-		AccountService acctserv = new AccountServiceImpl();
 		Scanner s = new Scanner(System.in);
+		AccountService acctserv = new AccountServiceImpl();
+		
 		try {
 			System.out.println("Banking deposits");
 			System.out.println("Enter account id");

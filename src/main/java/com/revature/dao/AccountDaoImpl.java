@@ -316,9 +316,8 @@ public class AccountDaoImpl implements AccountDao {
 		double balance1 = a1.getBalance(), oldbal1 = a1.getBalance();
 		double balance2 = a2.getBalance(), oldbal2 = a2.getBalance();
 		double bal = 0;
-
-		if (a1.getStatus().getStatus().equalsIgnoreCase("open")
-				&& a2.getStatus().getStatus().equalsIgnoreCase("open")) {
+		
+		if (a1.getStatus().getStatus().equalsIgnoreCase("open") && a2.getStatus().getStatus().equalsIgnoreCase("open")) {
 			if (b > 0 && balance1 >= b) {
 				balance1 -= b;
 				balance2 += b;
@@ -359,13 +358,13 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account status(int sID, String status) {
-		Account a = selectAccountById(sID);
-		;
+		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-		if (status.equalsIgnoreCase("Close")) {
-			a = cancelAccount(a);
-		} else {
-			try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
+			Account a = selectAccountById(sID);
+
+			if (status.equalsIgnoreCase("Close")) {
+				a = cancelAccount(a);
+			} else {
 
 				sql = "update accountstatus set status ='" + status + "' where statusid =" + sID;
 				ps = conn.prepareStatement(sql);
@@ -387,12 +386,17 @@ public class AccountDaoImpl implements AccountDao {
 							+ "].\n");
 
 				}
-			} catch (SQLException e) {
-				System.out.println(e);
-				log.warn(e + "\n");
+				return a;
 			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			log.warn(e + "\n");
+		} catch (NullPointerException e) {
+			System.out.println(e);
+			log.warn(e + "\n");
+			throw new NullPointerException();
 		}
-		return a;
+		return null;
 	}
 
 	@Override
@@ -402,11 +406,10 @@ public class AccountDaoImpl implements AccountDao {
 		System.out.println();
 		log.info("Attempting to close acctID: " + a.getAccountId());
 
-		a.getStatus().setStatus("Close");
-		AccountStatus s = new AccountStatus(a.getStatus().getStatusId(), a.getStatus().getStatus());
-		Account ac = new Account(a.getAccountId(), a.getBalance(), s, a.getType(), a.getOwnerid());
-
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
+			a.getStatus().setStatus("Close");
+			AccountStatus s = new AccountStatus(a.getStatus().getStatusId(), a.getStatus().getStatus());
+			Account ac = new Account(a.getAccountId(), a.getBalance(), s, a.getType(), a.getOwnerid());
 
 			sql = "DELETE FROM account where accountid=" + a.getAccountId();
 			ps = conn.prepareStatement(sql);
@@ -417,11 +420,16 @@ public class AccountDaoImpl implements AccountDao {
 
 			User u = userserv.getUser(a.getOwnerid());
 			System.out.println(u);
+			return ac;
 		} catch (SQLException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
+		} catch (NullPointerException e) {
+			System.out.println(e);
+			log.warn(e + "\n");
+			throw new NullPointerException();
 		}
-		return ac;
+		return null;
 	}
 
 	@Override
@@ -496,6 +504,10 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public boolean isOwner(int i, int id) {
+		
+		System.out.println();
+		log.info("Attempting to validate if userID: "+i+" owns acctID: "+id+".\n");
+		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid "
@@ -505,7 +517,7 @@ public class AccountDaoImpl implements AccountDao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				System.out.println();
-				log.info("userID: " + i + " is the owner of acctID: " + id);
+				log.info("userID: " + i + " is the owner of acctID: " + id+".\n");
 				return true;
 			}
 		} catch (SQLException e) {
@@ -514,7 +526,7 @@ public class AccountDaoImpl implements AccountDao {
 		}
 
 		System.out.println();
-		log.info(i + " is not the owner of acctID: " + id);
+		log.info(i + " is not the owner of acctID: " + id+".\n");
 		return false;
 	}
 }

@@ -56,7 +56,7 @@ public class Account {
 	}
 
 	public String toString() {
-		String open = "\nAccount Id: " + accountId + "\nBalance: $" + balance + "\n" + status + "\n" + type + "\n";
+		String open = "\nAccount ID: " + accountId + "\tBalance: $" + balance + "\n" + status + "\n" + type + "\n";
 		return open;
 	}
 

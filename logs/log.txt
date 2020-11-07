@@ -502,3 +502,817 @@
 
 11-06-2020 14:39:43 INFO  Main:37 - Ended
 
+11-07-2020 15:47:55 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 15:48:07 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 15:48:07 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 15:48:07 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 15:48:07 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 15:48:07 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 15:48:16 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:48:20 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 15:48:21 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 15:48:22 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 15:48:22 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 15:48:22 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 15:48:22 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 15:48:22 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 1 Approval Pending.
+
+11-07-2020 15:48:22 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:48:23 WARN  UserDaoImpl:147 - Invalid username or password.
+
+11-07-2020 15:48:34 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 15:48:56 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 15:49:58 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 15:51:31 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:51:35 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:52:21 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 15:52:25 INFO  UserDaoImpl:231 - Customer: mare successfully logged in.
+
+11-07-2020 15:55:00 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:55:04 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:55:57 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:56:00 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:56:33 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:56:38 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:57:06 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:57:10 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:57:48 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:57:51 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 15:57:53 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 15:57:54 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 15:57:54 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 15:57:54 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 2 Approval Pending.
+
+11-07-2020 15:57:54 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:57:55 WARN  UserDaoImpl:147 - Invalid username or password.
+
+11-07-2020 15:58:09 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:58:28 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 15:59:01 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 15:59:05 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 16:00:00 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:00:04 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 16:00:32 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:00:35 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 16:01:09 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:01:12 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 16:02:11 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:02:15 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 16:16:27 INFO  Main:50 - Attempting to register a profile.
+
+11-07-2020 16:20:23 INFO  Main:50 - Attempting to register a profile.
+
+11-07-2020 16:21:22 INFO  Main:50 - Attempting to register a profile.
+
+11-07-2020 16:21:58 INFO  Main:50 - Attempting to register a profile.
+
+11-07-2020 16:28:52 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:29:20 INFO  Main:112 - Login attempt.
+
+11-07-2020 16:29:20 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:29:24 INFO  UserDaoImpl:231 - Customer: mare successfully logged in.
+
+11-07-2020 16:29:24 INFO  Main:138 - mare is in Customer Menu.
+
+11-07-2020 16:29:31 INFO  Main:186 - mare logged out
+
+11-07-2020 16:29:33 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:29:43 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:29:43 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 16:29:43 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 16:29:43 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 16:29:44 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 16:29:44 INFO  Main:138 - d is in Customer Menu.
+
+11-07-2020 16:29:50 INFO  Main:186 - d logged out
+
+11-07-2020 16:29:52 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:30:45 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:30:45 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 16:30:45 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 16:30:45 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 16:30:45 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 16:30:45 INFO  Main:138 - PizzaPoPa is in Customer Menu.
+
+11-07-2020 16:33:28 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:33:40 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:33:53 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:33:53 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 16:33:53 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 16:33:53 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 16:33:54 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 16:33:54 INFO  Main:147 - r is in Customer Menu.
+
+11-07-2020 16:34:02 INFO  Main:195 - r logged out
+
+11-07-2020 16:35:00 INFO  Main:51 - Attempting to register a profile.
+
+11-07-2020 16:35:12 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:35:12 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 16:35:12 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 16:35:12 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 16:35:12 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 16:35:12 INFO  Main:147 - f is in Customer Menu.
+
+11-07-2020 16:35:14 INFO  Main:195 - f logged out
+
+11-07-2020 16:41:35 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:41:35 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:41:37 WARN  UserDaoImpl:240 - Invalid user name or password.
+
+11-07-2020 16:41:37 WARN  Main:126 - java.lang.NullPointerException
+
+11-07-2020 16:42:12 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:42:12 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:42:15 INFO  UserDaoImpl:231 - Customer: d successfully logged in.
+
+11-07-2020 16:42:15 INFO  Main:136 - d is in Customer Menu.
+
+11-07-2020 16:42:17 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:42:17 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:42:21 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:42:21 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:42:24 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:44:38 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:44:38 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:44:41 INFO  UserDaoImpl:231 - Customer: d successfully logged in.
+
+11-07-2020 16:44:41 INFO  Main:136 - d is in Customer Menu.
+
+11-07-2020 16:44:44 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:44:44 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:44:47 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:44:47 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:44:49 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:45:47 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:45:47 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:45:51 INFO  UserDaoImpl:231 - Customer: d successfully logged in.
+
+11-07-2020 16:45:51 INFO  Main:136 - d is in Customer Menu.
+
+11-07-2020 16:45:52 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:45:52 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:45:57 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:45:57 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:45:59 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:48:45 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:48:45 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:48:49 INFO  UserDaoImpl:231 - Customer: d successfully logged in.
+
+11-07-2020 16:48:49 INFO  Main:136 - d is in Customer Menu.
+
+11-07-2020 16:48:50 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:48:50 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:48:56 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:48:56 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:48:59 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:50:56 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:50:56 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:51:00 INFO  UserDaoImpl:231 - Customer: d successfully logged in.
+
+11-07-2020 16:51:00 INFO  Main:136 - d is in Customer Menu.
+
+11-07-2020 16:51:01 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:51:01 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:51:05 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:51:05 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:51:08 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:51:39 INFO  Main:165 - Chose option to open account.
+11-07-2020 16:51:39 INFO  Main:198 - d attempting to open account.
+
+11-07-2020 16:51:44 INFO  Main:226 - Attempting to identify user to open an account.
+
+11-07-2020 16:51:44 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 16:51:47 INFO  UserDaoImpl:139 - Identified Customer: d
+
+11-07-2020 16:51:49 INFO  Main:243 - Attempting to open account.
+
+11-07-2020 16:51:50 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 16:51:50 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 16:51:50 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 16:51:51 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 16:51:52 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 3 Approval Pending.
+
+11-07-2020 16:51:59 INFO  Main:184 - d logged out
+
+11-07-2020 16:53:27 INFO  Main:110 - Login attempt.
+
+11-07-2020 16:53:27 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 16:53:29 INFO  UserDaoImpl:231 - Admin: king successfully logged in.
+
+11-07-2020 16:53:29 INFO  Main:410 - Admin: king is in Employee Menu.
+
+11-07-2020 16:53:31 INFO  Main:436 - Chose option to view customers.
+
+11-07-2020 16:59:55 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:59:56 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 16:59:56 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 16:59:56 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 16:59:56 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 16:59:57 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:59:57 WARN  UserDaoImpl:103 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "bankuser_email_key"
+  Detail: Key (email)=(mareo1997@gmail.com) already exists.
+
+11-07-2020 16:59:58 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 16:59:58 WARN  UserDaoImpl:103 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "bankuser_username_key"
+  Detail: Key (username)=(mareo1997) already exists.
+
+11-07-2020 16:59:58 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 17:00:00 WARN  UserDaoImpl:240 - Invalid user name or password.
+
+11-07-2020 17:00:00 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 17:00:02 INFO  UserDaoImpl:231 - Admin: king successfully logged in.
+
+11-07-2020 17:00:02 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:03 WARN  UserDaoImpl:147 - Invalid user name or password.
+
+11-07-2020 17:00:03 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:05 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:00:05 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:07 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:00:08 WARN  AccountDaoImpl:60 - Cant open an account with less than $500.00.
+
+11-07-2020 17:00:08 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:10 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:00:11 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:00:12 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:00:12 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:00:12 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:00:12 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 1 Approval Pending.
+
+11-07-2020 17:00:12 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:14 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 17:00:15 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:15 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:00:15 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:00:16 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 2 Approval Pending.
+
+11-07-2020 17:00:16 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:18 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:00:20 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 3 Approval Pending.
+
+11-07-2020 17:00:20 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:23 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:00:24 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:00:25 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:00:25 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:00:25 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:00:25 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 4 Approval Pending.
+
+11-07-2020 17:00:25 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:00:27 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:00:28 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:00:29 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 5 Approval Pending.
+
+11-07-2020 17:00:31 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:00:31 WARN  AccountDaoImpl:149 - org.postgresql.util.PSQLException: ERROR: insert or update on table "account" violates foreign key constraint "account_ownerid_fkey"
+  Detail: Key (ownerid)=(0) is not present in table "bankuser".
+
+11-07-2020 17:00:32 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:00:33 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:00:33 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 1 owns acctID: 0.
+
+11-07-2020 17:00:34 INFO  AccountDaoImpl:529 - 1 is not the owner of acctID: 0.
+
+11-07-2020 17:00:34 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 4 owns acctID: 2.
+
+11-07-2020 17:00:36 INFO  AccountDaoImpl:520 - userID: 4 is the owner of acctID: 2.
+
+11-07-2020 17:00:36 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 1 owns acctID: 1.
+
+11-07-2020 17:00:37 INFO  AccountDaoImpl:520 - userID: 1 is the owner of acctID: 1.
+
+11-07-2020 17:01:15 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 17:01:15 INFO  UserDaoImpl:64 - Generated new user.
+
+11-07-2020 17:01:15 INFO  UserDaoImpl:65 - Generating new role.
+
+11-07-2020 17:01:16 INFO  UserDaoImpl:78 - Generating insert role sql statement.
+
+11-07-2020 17:01:16 INFO  UserDaoImpl:96 - Generated new role.
+
+11-07-2020 17:01:17 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 17:01:17 WARN  UserDaoImpl:103 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "bankuser_email_key"
+  Detail: Key (email)=(mareo1997@gmail.com) already exists.
+
+11-07-2020 17:01:18 INFO  UserDaoImpl:52 - Generating insert user sql statement.
+
+11-07-2020 17:01:18 WARN  UserDaoImpl:103 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "bankuser_username_key"
+  Detail: Key (username)=(mareo1997) already exists.
+
+11-07-2020 17:01:18 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 17:01:19 WARN  UserDaoImpl:240 - Invalid user name or password.
+
+11-07-2020 17:01:19 INFO  UserDaoImpl:213 - Attempting to validate user.
+
+11-07-2020 17:01:22 INFO  UserDaoImpl:231 - Admin: king successfully logged in.
+
+11-07-2020 17:01:22 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:23 WARN  UserDaoImpl:147 - Invalid user name or password.
+
+11-07-2020 17:01:23 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:25 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:01:25 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:26 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:01:28 WARN  AccountDaoImpl:60 - Cant open an account with less than $500.00.
+
+11-07-2020 17:01:28 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:30 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:01:31 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:01:32 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:01:32 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:01:32 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:01:32 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:01:32 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 1 Approval Pending.
+
+11-07-2020 17:01:32 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:34 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 17:01:35 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:35 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:01:35 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:01:35 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:01:36 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 2 Approval Pending.
+
+11-07-2020 17:01:36 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:39 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:01:40 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 3 Approval Pending.
+
+11-07-2020 17:01:40 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:43 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:01:44 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:01:45 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:01:45 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:01:45 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:01:45 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:01:45 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 4 Approval Pending.
+
+11-07-2020 17:01:45 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:01:47 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:74 - Generated new account.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:75 - Generating new status.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:87 - Generating insert status sql statement.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:96 - Generated new status.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:97 - Generating new type.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:108 - Generating insert type sql statement.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:117 - Generated new type.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:128 - Generated new type.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:129 - Generating new account.
+
+11-07-2020 17:01:49 INFO  AccountDaoImpl:145 - Successfully opened AcctID: 5 Approval Pending.
+
+11-07-2020 17:01:51 INFO  AccountDaoImpl:65 - Generating insert account sql statement.
+
+11-07-2020 17:01:51 WARN  AccountDaoImpl:149 - org.postgresql.util.PSQLException: ERROR: insert or update on table "account" violates foreign key constraint "account_ownerid_fkey"
+  Detail: Key (ownerid)=(0) is not present in table "bankuser".
+
+11-07-2020 17:01:52 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:01:53 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:01:53 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 1 owns acctID: 0.
+
+11-07-2020 17:01:54 INFO  AccountDaoImpl:529 - 1 is not the owner of acctID: 0.
+
+11-07-2020 17:01:54 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 1 owns acctID: 2.
+
+11-07-2020 17:01:55 INFO  AccountDaoImpl:529 - 1 is not the owner of acctID: 2.
+
+11-07-2020 17:01:55 INFO  AccountDaoImpl:509 - Attempting to validate if userID: 1 owns acctID: 1.
+
+11-07-2020 17:01:56 INFO  AccountDaoImpl:520 - userID: 1 is the owner of acctID: 1.
+
+11-07-2020 17:01:57 INFO  AccountDaoImpl:177 - Identified acctID: 4.
+
+11-07-2020 17:01:57 INFO  AccountDaoImpl:407 - Attempting to close acctID: 4
+11-07-2020 17:01:58 INFO  AccountDaoImpl:419 - Successfully closed acctID: 4.
+
+11-07-2020 17:01:58 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:02:01 INFO  UserDaoImpl:139 - Identified Customer: mare
+
+11-07-2020 17:02:02 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:02:04 INFO  AccountDaoImpl:177 - Identified acctID: 5.
+
+11-07-2020 17:02:04 INFO  AccountDaoImpl:407 - Attempting to close acctID: 5
+11-07-2020 17:02:05 INFO  AccountDaoImpl:419 - Successfully closed acctID: 5.
+
+11-07-2020 17:02:05 INFO  UserDaoImpl:123 - Attempting to identify user.
+
+11-07-2020 17:02:07 INFO  UserDaoImpl:139 - Identified Customer: mareo1997
+
+11-07-2020 17:02:09 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:02:11 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:02:11 WARN  AccountDaoImpl:396 - java.lang.NullPointerException
+
+11-07-2020 17:02:13 WARN  AccountDaoImpl:186 - Account does not exist.
+
+11-07-2020 17:02:13 WARN  AccountDaoImpl:396 - java.lang.NullPointerException
+
+11-07-2020 17:02:15 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:15 INFO  AccountDaoImpl:385 - Successfully changed acctID: 1 status to [Open].
+
+11-07-2020 17:02:18 INFO  AccountDaoImpl:177 - Identified acctID: 3.
+
+11-07-2020 17:02:18 INFO  AccountDaoImpl:385 - Successfully changed acctID: 3 status to [Open].
+
+11-07-2020 17:02:20 INFO  AccountDaoImpl:177 - Identified acctID: 2.
+
+11-07-2020 17:02:20 INFO  AccountDaoImpl:385 - Successfully changed acctID: 2 status to [Denied].
+
+11-07-2020 17:02:22 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:23 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:24 INFO  AccountDaoImpl:257 - acctID: 1 old balance: $8000.0 new balance: $11000.0
+11-07-2020 17:02:25 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:25 INFO  AccountDaoImpl:177 - Identified acctID: 3.
+
+11-07-2020 17:02:26 INFO  AccountDaoImpl:339 - acctID: 1 old balance: $11000.0 new balance: $10000.0
+11-07-2020 17:02:26 INFO  AccountDaoImpl:340 - acctID: 3 old balance: $6000.0 new balance: $7000.0
+11-07-2020 17:02:28 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:29 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:30 INFO  AccountDaoImpl:292 - acctID: 1 old balance: $10000.0 new balance: $8000.0
+11-07-2020 17:02:31 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:31 WARN  AccountDaoImpl:266 - Can't deposit $0 into an account.
+
+11-07-2020 17:02:32 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:33 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:33 WARN  AccountDaoImpl:300 - Withdraw cannot be greater than account.
+
+11-07-2020 17:02:34 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:35 INFO  AccountDaoImpl:177 - Identified acctID: 1.
+
+11-07-2020 17:02:36 INFO  AccountDaoImpl:177 - Identified acctID: 3.
+
+11-07-2020 17:02:36 WARN  AccountDaoImpl:348 - Withdraw cannot be greater than account.
+
+11-07-2020 17:02:37 INFO  AccountDaoImpl:177 - Identified acctID: 2.
+
+11-07-2020 17:02:37 WARN  AccountDaoImpl:271 - Can't perform transaction on unopen accounts.
+

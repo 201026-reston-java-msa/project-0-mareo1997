@@ -144,7 +144,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		if (u == null) {
 			System.out.println();
-			log.warn("Invalid username or password.\n");
+			log.warn("Invalid user name or password.\n");
 			throw new NullPointerException();
 		}
 		return u;
@@ -237,7 +237,7 @@ public class UserDaoImpl implements UserDao {
 		}
 		if (u == null) {
 			System.out.println();
-			log.warn("Invalid username or password.\n");
+			log.warn("Invalid user name or password.\n");
 			throw new NullPointerException();
 		}
 		return u;

@@ -76,6 +76,7 @@ public class Testing {
 
 	@Test
 	public void test3_USERID() {
+		//System.out.println(user.getUser(1));
 		assertEquals("mareo1997", user.getUser(1).getUsername());
 	}
 
@@ -162,7 +163,7 @@ public class Testing {
 
 	@Test
 	public void test6_FALSEOWNER() {
-		assertFalse(acct.isOwner(4, 2));
+		assertFalse(acct.isOwner(1, 2));
 	}
 
 	/***************************************** Test Status*********************************/

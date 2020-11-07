@@ -28,10 +28,13 @@ public class Main {
 		while (run) {
 			System.out.println("Do you have an account? Yes/No");
 			String a = s.next();
+			
 			if (a.startsWith("y") || a.startsWith("Y")) {
 				Login();
+			
 			} else if (a.startsWith("n") || a.startsWith("N")) {
 				Register();
+			
 			} else {
 				System.out.println();
 				log.info("Ended\n");
@@ -42,42 +45,58 @@ public class Main {
 
 	private static void Register() {
 		UserService userserv = new UserServiceImpl();
-		String username, password, fname, lname, email, repassword;
+		String username, password, fname, lname, email, repassword, confirm;
 		boolean registering = true;
 		Scanner s = new Scanner(System.in);
+		User user1, user2;
 
 		System.out.println();
 		log.info("Attempting to register a profile.\n");
 
 		do {
 			System.out.println("Register a profile");
-			System.out.println("Enter Name");
+
+			System.out.println("Enter first and last name");
 			fname = s.next();
 			lname = s.next();
+
 			System.out.println("Enter Email");
 			email = s.next();
-			System.out.println("Enter Username");
+
+			System.out.println("Enter User Name");
 			username = s.next();
+
 			System.out.println("Enter Password");
-			password = s.next();//
-			System.out.println("Reenter Password");//
-			repassword = s.next();//
-			if (password.equals(repassword)) {//
-				registering = false;//
-			} else {//
-				System.out.println("Password error.");// }
+			password = s.next();
+
+			System.out.println("Reenter Password");
+			repassword = s.next();
+
+			if (password.equals(repassword)) {
+				System.out.println("\nName: " + fname + " " + lname + "\nUser Name: " + username + "\nEmail: " + email);
+
+				System.out.println("Is the above information correct?");
+				confirm = s.next();
+
+				if (confirm.startsWith("y") || confirm.startsWith("Y")) {
+
+					try {
+						user1 = new User(username, password, fname, lname, email);
+						user2 = userserv.newUser(user1);
+						CustomerMenu(user2);
+						registering = false;
+					} catch (NullPointerException e) {
+						System.out.println(e);
+						log.warn(e + "\n");
+					}
+				} else if (confirm.startsWith("n") || confirm.startsWith("N")) {
+					registering = false;
+				}
+			} else {
+				System.out.println("Password error.");
 			}
 
 		} while (registering);
-
-		try {
-			User user1 = new User(username, password, fname, lname, email);
-			User user2 = userserv.newUser(user1);
-			CustomerMenu(user2);
-		} catch (NullPointerException e) {
-			System.out.println(e);
-			log.warn(e + "\n");
-		}
 	}
 
 	private static void Login() {
@@ -85,7 +104,7 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 		String username, password;
 
-		System.out.println("Enter Username");
+		System.out.println("Enter User Name");
 		username = s.next();
 		System.out.println("Enter Password");
 		password = s.next();
@@ -95,7 +114,7 @@ public class Main {
 
 		try {
 			UserService userserv = new UserServiceImpl();
-			User user = userserv.userlogin(username, password);// if (user != null) { //user.getUserId();
+			User user = userserv.userlogin(username, password);
 
 			if (user.getRole().getRole().equalsIgnoreCase("Customer")) {
 				System.out.println(username + " successfully logged in.");
@@ -104,7 +123,7 @@ public class Main {
 					|| user.getRole().getRole().equalsIgnoreCase("Admin")) {
 				System.out.println(user.getRole().getRole() + ": " + username + " successful logged in.");
 				EmployeeMenu(user);
-			} // } else { // System.out.println("Invalid username or password.\n"); //}
+			}
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
@@ -146,19 +165,19 @@ public class Main {
 			System.out.println();
 			switch (custselect) {
 			case 1:
-				log.info("Choose option to open account.");
+				log.info("Chose option to open account.");
 				openAccount(u);
 				break;
 			case 2:
-				log.info("Choose option to deposit.\n");
+				log.info("Chose option to deposit.\n");
 				deposit(u);
 				break;
 			case 3:
-				log.info("Choose option to withdraw.\n");
+				log.info("Chose option to withdraw.\n");
 				withdraw(u);
 				break;
 			case 4:
-				log.info("Choose option to transfer.\n");
+				log.info("Chose option to transfer.\n");
 				transfer(u);
 				break;
 			default:
@@ -175,32 +194,37 @@ public class Main {
 	private static void openAccount(User u) {
 		AccountService acctserv = new AccountServiceImpl();
 		UserService userserv = new UserServiceImpl();
-		String type = null;
+		String type = null, confirm;
 		Scanner s = new Scanner(System.in);
 
 		System.out.println();
 		log.info(u.getUsername() + " attempting to open account.\n");
+		
 		try {
 			System.out.println("What type of account do you want? Checkings or Savings");
 			String select = s.next();
+			
 			if (select.startsWith("c") || select.startsWith("C")) {
 				type = "Checkings";
+			
 			} else if (select.startsWith("s") || select.startsWith("S")) {
 				type = "Savings";
+			
 			} else {
-				System.out.println("Choose non-exisiting account type.");
-				log.warn("Choose non-exisiting account type.\n");// CustomerMenu(u);
+				System.out.println("Chose non-exisiting account type.");
+				log.warn("Chose non-exisiting account type.\n");
 				throw new NullPointerException();
 			}
 
 			System.out.println("\nEnter a minimum deposit of $500.00");
 			double deposit = s.nextDouble();
+			
 			if (deposit < 500.00) {
 				System.out.println();
-				log.warn("Cant open an account with less than $500.00.\n");// throw new MinimumDepositException("Cant
-																			// open an account with less than $500.00");
+				log.warn("Cant open an account with less than $500.00.\n");
+			
 			} else {
-
+				
 				System.out.println();
 				log.info("Attempting to identify user to open an account.\n");
 				User user = userserv.getUser(u.getUserId());// System.out.println(user);
@@ -208,24 +232,39 @@ public class Main {
 				AccountType at = new AccountType(type);// System.out.println(at);
 
 				Account a = new Account(deposit, at);// System.out.println(a);
+				
+				System.out.println(
+								"User ID: "+u.getUserId()+"\tName: " + u.getFirstName() + " " + u.getLastName() + 
+								"\nUser Name: " + u.getUsername() + "\tEmail: " + u.getEmail()+
+								"\nType: " + type + "\tInitial Deposit: $" + deposit);
+				System.out.println("Is the above information correct?");
+				confirm = s.next();
 
-				System.out.println();
-				log.info("Attempting to open account.\n");
-				Account account = acctserv.newAccount(a, user);// System.out.println(account);
+				if (confirm.startsWith("y") || confirm.startsWith("Y")) {
+					
+					System.out.println();
+					log.info("Attempting to open account.\n");
+					Account account = acctserv.newAccount(a, user);// System.out.println(account);
 
-				if (account != null) {
-					System.out.println("Successfully opened account. Approval Pending.");
-				} else {
-					System.out.println("Failure to open account.");
-					log.warn("Failure to open account.\n");
+					if (account != null) {
+						System.out.println("Successfully opened account. Approval Pending.");
+					
+					} else {
+						System.out.println("Failure to open account.");
+						log.warn("Failure to open account.\n");
+					}
+					
 				}
+
 			}
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
+			
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
+		
 		} catch (MinimumDepositException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
@@ -235,7 +274,7 @@ public class Main {
 	private static void deposit(User u) {
 		Scanner s = new Scanner(System.in);
 		AccountService acctserv = new AccountServiceImpl();
-		
+
 		try {
 			System.out.println("Banking deposits");
 			System.out.println("Enter account id");
@@ -256,19 +295,24 @@ public class Main {
 
 				System.out.println();
 				log.info(u.getUsername() + " deposited $" + b + " into acctID: " + aID + ".\n");// }
+		
 			} else {
 				System.out.println();
 				log.warn(u.getUsername() + " did not have permission to access acctID: " + aID + ".\n");
 			}
+
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
+		
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn("Account does not exist.\n");
+		
 		} catch (UnOpenException e) {
 			System.out.println(e);
 			log.warn("Tried to access unopen account.\n");
+		
 		} catch (DepositException e) {
 			System.out.println(e);
 			log.warn("Tried to deposit $0 into account.\n");
@@ -299,19 +343,24 @@ public class Main {
 
 				System.out.println();
 				log.info(u.getUsername() + " withdrew $" + b + " from acctID: " + aID + ".\n");// }
+
 			} else {
 				System.out.println();
 				log.warn(u.getUsername() + " did not have permission to access acctID: " + aID + ".\n");
 			}
+		
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 			log.warn(e);
+
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn("Account does not exist.\n");
+		
 		} catch (UnOpenException e) {
 			System.out.println(e);
 			log.warn("Tried to access unopen account.\n");
+		
 		} catch (OverDraftException e) {
 			System.out.println(e);
 			log.warn("Tried to overdraw from account.\n");
@@ -323,9 +372,11 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 
 		try {
+		
 			System.out.println("Banking transfers");
 			System.out.println("Enter source account id");
 			int source = s.nextInt();
+			
 			System.out.println("Enter target account id");
 			int target = s.nextInt();
 
@@ -344,21 +395,25 @@ public class Main {
 				acctserv.transfer(source, target, b);
 
 				System.out.println();
-				log.info(u.getUsername() + " transfered $" + b + " from acctID: " + source + " to acctID: " + target
-						+ ".\n");
+				log.info(u.getUsername() + " transfered $" + b + " from acctID: " + source + " to acctID: " + target+".\n");
+
 			} else {
 				System.out.println();
 				log.warn(u.getUsername() + " did not have permission to access acctID: " + source + ".\n");
 			}
+			
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 			log.warn(e);
+
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn("Account does not exist.\n");
+		
 		} catch (UnOpenException e) {
 			System.out.println(e);
 			log.warn("Tried to access unopen account.\n");
+		
 		} catch (OverDraftException e) {
 			System.out.println(e);
 			log.warn("Tried to overdraw from account.\n");
@@ -396,23 +451,27 @@ public class Main {
 			}
 
 			System.out.println();
-			switch (emplselect) {
+			switch (emplselect) {			
 			case 1:
-				log.info("Choose option to view customers.\n");
+				log.info("Chose option to view customers.\n");
 				collector();
 				break;
+		
 			case 2:
-				log.info("Choose option to approve or deny accounts.\n");
+				log.info("Chose option to approve or deny accounts.\n");
 				status(u);
 				break;
+			
 			case 3:
-				log.info("Choose option to perform transactions on accounts.\n");
+				log.info("Chose option to perform transactions on accounts.\n");
 				transaction(u);
 				break;
+
 			case -1:
 				log.info(u.getUsername() + " logged out\n");
 				login = false;
 				break;
+			
 			default:
 				System.out.println("Option not available. Try again\n");
 				break;
@@ -436,6 +495,7 @@ public class Main {
 
 		System.out.println();
 		log.info(u.getRole().getRole() + ": " + u.getUsername() + " attempting to change account status.\n");
+
 		try {
 			System.out.println("Enter account id");
 			int sID = s.nextInt();
@@ -446,17 +506,22 @@ public class Main {
 
 			System.out.println("Pick a status?\nOpen, Pending, Denied, Close.");
 			String status = s.next();
+		
 			if (status.startsWith("o") || status.startsWith("O")) {
 				newstatus = "Open";
+			
 			} else if (status.startsWith("d") || status.startsWith("D")) {
 				newstatus = "Denied";
+			
 			} else if (status.startsWith("p") || status.startsWith("P")) {
 				newstatus = "Pending";
+			
 			} else if (status.startsWith("c") || status.startsWith("C")) {
 				newstatus = "Close";
+			
 			} else {
 				System.out.println();
-				log.warn("Choose a non-existing status.\n");
+				log.warn("Chose a non-existing status.\n");
 			}
 
 			System.out.println();
@@ -464,17 +529,19 @@ public class Main {
 
 			if (newstatus.equalsIgnoreCase("Close") && !(u.getRole().getRole().equalsIgnoreCase("Admin"))) {
 				System.out.println();
-				log.warn(u.getRole().getRole() + ": " + u.getUsername()
-						+ " does not have authorization to close acctID: " + sID + ".\n");
+				log.warn(u.getRole().getRole() + ": " + u.getUsername()+" does not have authorization to close acctID: " + sID + ".\n");
+
 			} else {
 				acctserv.change(a.getStatus().getStatusId(), newstatus);
 
 				System.out.println();
 				log.info(u.getUsername() + " changed acctID: " + sID + " status to " + newstatus + ".\n");
 			}
+
 		} catch (InputMismatchException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
+		
 		} catch (NullPointerException e) {
 			System.out.println(e);
 			log.warn(e + "\n");
@@ -501,12 +568,16 @@ public class Main {
 
 			if (empl.startsWith("d") || empl.startsWith("D")) {
 				select = 1;
+		
 			} else if (empl.startsWith("w") || empl.startsWith("W")) {
 				select = 2;
+			
 			} else if (empl.startsWith("t") || empl.startsWith("T")) {
 				select = 3;
+			
 			} else if (empl.startsWith("e") || empl.startsWith("E")) {
 				select = -1;
+			
 			} else {
 				select = 0;
 			}
@@ -514,21 +585,25 @@ public class Main {
 			System.out.println();
 			switch (select) {
 			case 1:
-				log.info("Choose option to deposit.\n");
+				log.info("Chose option to deposit.\n");
 				deposit(u);
 				break;
+			
 			case 2:
-				log.info("Choose option to withdraw.\n");
+				log.info("Chose option to withdraw.\n");
 				withdraw(u);
 				break;
+			
 			case 3:
-				log.info("Choose option to transfer.\n");
+				log.info("Chose option to transfer.\n");
 				transfer(u);
 				break;
+			
 			case -1:
 				log.info(u.getUsername() + " exited.\n");
 				login = false;
 				break;
+			
 			default:
 				System.out.println("Option not available. Try again.\n");
 				break;

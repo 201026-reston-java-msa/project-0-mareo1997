@@ -66,8 +66,8 @@ public class User {
 	}
 
 	public String toString() {
-		String valid = "User ID: " + userId + "\n" + "Name: " + firstName + " " + lastName + "\n" + "Username: "
-				+ username + "\n" + "Email: " + email + "\n" + role + "\n" + AccountList.toString() + "\n";
+		String valid = "User ID: " + userId + "\tName: " + firstName + " " + lastName + "\nUser name: "
+				+ username + "\tEmail: " + email + "\n" + role + "\n" + AccountList.toString() + "\n";
 		return valid;
 	}
 

@@ -26,7 +26,7 @@ public class AccountStatus {
 	}
 
 	public String toString() {
-		String output = "Status ID: " + statusId + "\n" + "Status: " + status;
+		String output = "Status ID: " + statusId + "\tStatus: " + status;
 		return output;
 	}
 

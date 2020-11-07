@@ -34,7 +34,7 @@ public class AccountType {
 	}
 
 	public String toString() {
-		String output = "Type ID: " + typeId + "\n" + "Type: " + type;
+		String output = "Type ID: " + typeId + "\tType: " + type;
 		return output;
 	}
 

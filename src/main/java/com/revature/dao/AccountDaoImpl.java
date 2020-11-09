@@ -56,7 +56,7 @@ public class AccountDaoImpl implements AccountDao {
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
 			if (a.getBalance() < 500) {
-				System.out.println();
+				System.out.println("Cant open an account with less than $500.00.");
 				log.warn("Cant open an account with less than $500.00.\n");
 				throw new MinimumDepositException("Cant open an account with less than $500.00");
 			}

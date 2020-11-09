@@ -20,12 +20,12 @@ Leveraging Java 8, create an application that simulates simple banking transacti
     * withdrawing, depositing, transferring from all accounts **DONE**
     * canceling accounts **DONE**
 *	Reasonable test coverage for the service layer is expected using JUnit. **DONE**
-    * TDD is encouraged. **INCOMPLETE**
+    * TDD is encouraged. **DONE**
 *	Logging should be accomplished using Log4J **DONE**
     * All transactions should be logged **DONE**
 
 * Create an SQL script that will create a user in an SQL database and a table schema for storing your bank users and account information. **DONE**
-* Your database should include at least 1 stored procedure. **DON'T**
+* Your database should include at least 1 stored procedure. **MAYBE**
 * Have your bank application connect to your SQL database using JDBC and store all information that way.' **DONE**
 * You should use the DAO design pattern for data connectivity. **DONE**
 
@@ -39,7 +39,7 @@ The project will be evaluated out of 100 points split between two main catagorie
 * 10 pts: Login, register, update and logout functionality for users.  **DONE**
 * 5 pts: Proper use of DAO design pattern.  **DONE**
 * 5 pts: Different user roles with different levels of access implemented correctly. **DONE**
-* 5 pts: Reasonable test coverage of the service layer and proper logging. **INCOMPLETE**
+* 5 pts: Reasonable test coverage of the service layer and proper logging. **DONE**
 * 5 pts: Appropriate validation for user inputs. **DONE**
 
 

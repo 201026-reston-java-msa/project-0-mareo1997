@@ -108,7 +108,7 @@ public class UserDaoImpl implements UserDao {
 		}
 
 		if (user != null) {
-			System.out.println(user);
+			System.out.println("Successfully registered: \n"+user);
 		}
 		return user;
 	}

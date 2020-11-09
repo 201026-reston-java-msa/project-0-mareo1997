@@ -249,9 +249,10 @@ public class Main {
 
 			Account a = new Account(deposit, at);// System.out.println(a);
 
-			System.out.println("User ID: " + u.getUserId() + "\tName: " + u.getFirstName() + " " + u.getLastName()
-					+ "\nUser Name: " + u.getUsername() + "\tEmail: " + u.getEmail() + "\nType: " + type
-					+ "\tInitial Deposit: $" + deposit);
+			System.out.println(
+					"User ID: " + u.getUserId() + "\t\tName: " + u.getFirstName() + " " + u.getLastName()
+					+ "\nUser Name: " + u.getUsername() + "\t\tEmail: " + u.getEmail() 
+					+ "\nType: " + type + "\t\tInitial Deposit: $" + deposit);
 			System.out.println("Is the above information correct?");
 			confirm = s.next();
 
@@ -259,15 +260,7 @@ public class Main {
 
 				System.out.println();
 				log.info("Attempting to open account.\n");
-				Account account = acctserv.newAccount(a, user);// System.out.println(account);
-
-				if (account != null) {
-					System.out.println("Successfully opened account. Approval Pending.");
-
-				} else {
-					System.out.println("Failure to open account.");
-					log.warn("Failure to open account.\n");
-				}
+				acctserv.newAccount(a, user);// System.out.println(account);
 
 			}
 		} catch (InputMismatchException e) {
@@ -446,8 +439,8 @@ public class Main {
 
 			System.out.println("Welcome " + u.getUsername() + ", here are a range of options");
 			System.out.println("1. View all Customers");
-			System.out.println("2. Find user");
-			System.out.println("3. Find accounts");
+			System.out.println("2. Find User");
+			System.out.println("3. Find Accounts");
 			System.out.println("4. Approve/Deny account");
 			System.out.println("5. Update accounts");
 			System.out.println("6. Logout");

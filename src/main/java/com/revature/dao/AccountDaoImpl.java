@@ -28,7 +28,7 @@ public class AccountDaoImpl implements AccountDao {
 	private static String sqlusername = "postgres";
 	private static String sqlpassword = System.getenv("DB_PASSWORD");
 
-	public String sql;
+	public String sql, call;
 	public PreparedStatement ps;
 	public ResultSet rs;
 
@@ -74,27 +74,27 @@ public class AccountDaoImpl implements AccountDao {
 			log.info("Generated new account.\n");
 			log.info("Generating new status.\n");
 
-			sql = "select * from account where ownerid='" + u.getUserId() + "'";
+			sql = "select * from account where ownerid=?";//'" + u.getUserId() + "'";
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserId());
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				AccountList.add(new Account(rs.getInt(1), rs.getDouble(2), rs.getInt(3)));
 			}
-			acct = AccountList.get(AccountList.size() - 1);
+			acct = AccountList.get(AccountList.size() - 1);//Get last account
 
 			System.out.println();
-			log.info("Generating insert status sql statement.\n");
+			log.info("Calling status and type procedure sql statement.\n");
 
-			sql = "INSERT INTO accountstatus(status,acctid) VALUES (?,?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, "Pending");
-			ps.setInt(2, acct.getAccountId());
+			call = "call insert_accts(?,?)";
+			ps = conn.prepareStatement(call);
+			ps.setInt(1, acct.getAccountId());
+			ps.setString(2, a.getType().getType());
 			ps.executeUpdate();
-
+			
 			System.out.println();
-			log.info("Generated new status.\n");
-			log.info("Generating new type.\n");
+			log.info("Called status and type procedure.\n");
 
 			sql = "select * from accountstatus where status='Pending'";
 			ps = conn.prepareStatement(sql);
@@ -103,18 +103,6 @@ public class AccountDaoImpl implements AccountDao {
 				statuslist.add(new AccountStatus(rs.getInt(1), rs.getString(2)));
 			}
 			status = statuslist.get(statuslist.size() - 1);
-
-			System.out.println();
-			log.info("Generating insert type sql statement.\n");
-
-			sql = "INSERT INTO accounttype(accttype,acctid) VALUES (?,?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, a.getType().getType());
-			ps.setInt(2, acct.getAccountId());
-			ps.executeUpdate();
-
-			System.out.println();
-			log.info("Generated new type.\n");
 
 			sql = "select * from accounttype";
 			ps = conn.prepareStatement(sql);
@@ -125,14 +113,15 @@ public class AccountDaoImpl implements AccountDao {
 			type = typelist.get(typelist.size() - 1);
 
 			System.out.println();
-			log.info("Generated new type.\n");
 			log.info("Generating new account.\n");
 
-			sql = "select * from account a " + "full join accountstatus a2 on a.accountid = a2.acctid "
-					+ "FULL JOIN accounttype a3 ON a2.acctid = a3.acctid " + "WHERE a.accountid=" + acct.getAccountId()
-					+ " and a2.statusid=" + status.getStatusId() + " and a3.typeid=" + type.getTypeId();
+			sql = "select * from account a "
+				+ "inner join accountstatus a2 on a.accountid = a2.acctid "
+				+ "inner JOIN accounttype a3 ON a2.acctid = a3.acctid "
+				+ "WHERE a.accountid=?";
 
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, acct.getAccountId());
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -141,20 +130,27 @@ public class AccountDaoImpl implements AccountDao {
 				acct = new Account(rs.getInt(1), rs.getDouble(2), s, t, rs.getInt(3));
 				u.addAccount(acct);
 
-				System.out.println();
+				System.out.println("Successfully opened account. Approval Pending.");
 				log.info("Successfully opened AcctID: " + acct.getAccountId() + " Approval Pending.\n");
 			}
+		
 		} catch (PSQLException e) {
 			System.out.println();
 			log.warn(e + "\n");
 			throw new NullPointerException();
+		
 		} catch (SQLException e) {
 			System.out.println(e);
 			log.error("Incorrect SQL syntax.\n");
 		}
+		
 		if (acct != null) {
 			System.out.println(acct);
+		}else {
+			System.out.println("Failure to open account.");
+			log.warn("Failure to open account.\n");
 		}
+		
 		return acct;
 	}
 
@@ -163,9 +159,11 @@ public class AccountDaoImpl implements AccountDao {
 		Account a = null;
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid where a.accountid="
-					+ id;
+			sql = "select * from account a "
+				+ "inner join accountstatus a2 on a.accountid = a2.acctid "
+				+ "inner join accounttype a3 on a2.acctid =a3.acctid where a.accountid=?";//					+ id;
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -181,11 +179,13 @@ public class AccountDaoImpl implements AccountDao {
 			System.out.println(e);
 			log.warn(e + "\n");
 		}
+		
 		if (a == null) {
 			System.out.println();
 			log.warn("Account does not exist.\n");
 			throw new NullPointerException();
 		}
+		
 		return a;
 	}
 
@@ -510,11 +510,16 @@ public class AccountDaoImpl implements AccountDao {
 		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from account a full join accountstatus a2 on a.accountid = a2.acctid full join accounttype a3 on a2.acctid =a3.acctid "
-					+ "where a.ownerid=" + i + " and a.accountid =" + id;
+			sql = "select * from account a "
+				+ "inner join accountstatus a2 on a.accountid = a2.acctid "
+				+ "inner join accounttype a3 on a2.acctid =a3.acctid "
+				+ "where a.ownerid=? and a.accountid =?";// + id;
 
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, i);
+			ps.setInt(2, id);
 			rs = ps.executeQuery();
+			
 			if (rs.next()) {
 				System.out.println();
 				log.info("userID: " + i + " is the owner of acctID: " + id+".\n");

@@ -13,7 +13,7 @@ public class Role {
 	}
 
 	public String toString() {
-		String output = "Role ID: " + roleId + "\tRole: " + role;
+		String output = "Role ID: " + roleId + "\t\tRole: " + role;
 		return output;
 	}
 

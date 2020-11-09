@@ -37,8 +37,6 @@ public class Account {
 		this.balance = balance;
 		this.type = type;
 	}
-	
-	
 
 	public Account(double balance, AccountStatus status, AccountType type) {
 		super();
@@ -56,7 +54,7 @@ public class Account {
 	}
 
 	public String toString() {
-		String open = "\nAccount ID: " + accountId + "\tBalance: $" + balance + "\n" + status + "\n" + type + "\n";
+		String open = "\nAccount ID: " + accountId + "\t\tBalance: $" + balance + "\n" + status + "\n" + type + "\n";
 		return open;
 	}
 

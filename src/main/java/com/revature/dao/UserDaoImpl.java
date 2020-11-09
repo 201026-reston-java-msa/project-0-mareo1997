@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,9 +23,10 @@ public class UserDaoImpl implements UserDao {
 	private static String sqlusername = "postgres";
 	private static String sqlpassword = System.getenv("DB_PASSWORD");
 
-	public String sql;
+	public String sql, call;
 	public PreparedStatement ps;
 	public ResultSet rs;
+	public CallableStatement cs;
 
 	private static Logger log = Logger.getLogger(UserDaoImpl.class);
 
@@ -77,10 +79,9 @@ public class UserDaoImpl implements UserDao {
 			System.out.println();
 			log.info("Generating insert role sql statement.\n");
 
-			sql = "INSERT INTO Roles(bankrole,userID) VALUES (?,?)";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, "Customer");
-			ps.setInt(2, user.getUserId());
+			call = "CALL insert_role(?)";
+			ps = conn.prepareStatement(call);
+			ps.setInt(1, user.getUserId());
 			ps.executeUpdate();
 
 			sql = "select * from Roles where bankrole='Customer'";
@@ -124,8 +125,9 @@ public class UserDaoImpl implements UserDao {
 		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 			
-			sql = "select * from bankuser b " + "full join roles r on b.userid =r.userid " + "where b.userid =" + id;
+			sql = "select * from bankuser b inner join roles r on b.userid =r.userid where b.userid = ?";
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -214,10 +216,11 @@ public class UserDaoImpl implements UserDao {
 		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			sql = "select * from bankuser b inner join roles r on r.userid = b.userid where username= '" + username
-					+ "' AND bankpassword= '" + password + "'";
+			sql = "select * from bankuser b inner join roles r on r.userid = b.userid where username=? AND bankpassword=?";
 
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

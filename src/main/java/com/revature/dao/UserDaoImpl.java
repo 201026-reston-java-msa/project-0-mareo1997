@@ -50,7 +50,6 @@ public class UserDaoImpl implements UserDao {
 
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
 
-			System.out.println();
 			log.info("Generating insert user sql statement.\n");
 
 			sql = "INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) VALUES (?,?,?,?,?)";
@@ -62,7 +61,6 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(5, u.getEmail());// ps.setInt(6, r.getRoleId());
 			ps.executeUpdate();
 
-			System.out.println();
 			log.info("Generated new user.\n");
 			log.info("Generating new role.\n");
 
@@ -76,7 +74,6 @@ public class UserDaoImpl implements UserDao {
 			}
 			user = users.get(users.size() - 1);
 
-			System.out.println();
 			log.info("Generating insert role sql statement.\n");
 
 			call = "CALL insert_role(?)";
@@ -93,14 +90,15 @@ public class UserDaoImpl implements UserDao {
 			}
 			r = roles.get(roles.size() - 1);
 
-			System.out.println();
 			log.info("Generated new role.\n");
 
 			user = new User(user.getUserId(), user.getUsername(), user.getPassword(), user.getFirstName(),
 					user.getLastName(), user.getEmail(), r);
+			
+			log.info("Successfully registered " +user.getUsername() + ".\n");
 
 		} catch (PSQLException e) {
-			System.out.println(e);
+			System.out.println(e+"\n");
 			log.warn(e + "\n");
 			throw new NullPointerException();
 		} catch (SQLException e) {
@@ -109,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 		}
 
 		if (user != null) {
-			System.out.println("Successfully registered: \n"+user);
+			System.out.println("\nSuccessfully registered: \n"+user);
 		}
 		return user;
 	}
@@ -120,7 +118,6 @@ public class UserDaoImpl implements UserDao {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
 
-		System.out.println();
 		log.info("Attempting to identify user.\n");
 		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
@@ -137,7 +134,7 @@ public class UserDaoImpl implements UserDao {
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);// System.out.println(AccountList+"\n");
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
-				System.out.println();
+
 				log.info("Identified " + r.getRole() + ": " + u.getUsername() + "\n");
 			}
 		} catch (SQLException e) {
@@ -145,9 +142,8 @@ public class UserDaoImpl implements UserDao {
 			log.warn(e + "\n");
 		}
 		if (u == null) {
-			System.out.println();
-			log.warn("Invalid user name or password.\n");
-			throw new NullPointerException();
+			log.warn("User id does not exist.\n");
+			throw new NullPointerException("User id does not exist.");
 		}
 		return u;
 	}
@@ -211,7 +207,6 @@ public class UserDaoImpl implements UserDao {
 		User u = null;
 		AccountService acctserv = new AccountServiceImpl();
 		
-		System.out.println();
 		log.info("Attempting to validate user.\n");
 		
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
@@ -230,7 +225,7 @@ public class UserDaoImpl implements UserDao {
 				ArrayList<Account> AccountList = acctserv.getAllPersonalAccount(i);
 				u = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), r, AccountList);
-				System.out.println();
+
 				log.info(rs.getString(8) + ": " + username + " successfully logged in.\n");
 			}
 
@@ -239,9 +234,8 @@ public class UserDaoImpl implements UserDao {
 			log.warn(e + "\n");
 		}
 		if (u == null) {
-			System.out.println();
 			log.warn("Invalid user name or password.\n");
-			throw new NullPointerException();
+			throw new NullPointerException("Invalid user name or password");
 		}
 		return u;
 	}

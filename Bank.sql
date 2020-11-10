@@ -32,7 +32,7 @@ create table account(
 	accountid serial primary key,
 	balance NUMERIC (12,2) DEFAULT 0,
 	--statusid integer not null, --typeid integer not null,
-	ownerid integer not null, 
+	ownerid integer not null,
 	FOREIGN KEY (ownerid) REFERENCES bankuser (userId) on delete CASCADE
 	--FOREIGN KEY (typeid) REFERENCES accounttype (typeid) on delete CASCADE --FOREIGN KEY (acctid) REFERENCES account (accountid) on delete cascade,
 );
@@ -50,6 +50,24 @@ create table accounttype(
 	acctid integer,
 	FOREIGN KEY (acctid) REFERENCES account (accountid) on delete cascade
 );
+
+CREATE OR REPLACE PROCEDURE insert_role(userid integer)
+AS $$
+
+	BEGIN 
+		INSERT INTO roles(bankrole,userid) VALUES ('Customer',userid);
+	END;
+	
+$$ language plpgsql;
+
+CREATE OR REPLACE PROCEDURE insert_accts(acctid integer, accttype text)
+AS $$
+
+	BEGIN 
+		INSERT INTO accountstatus(status,acctid) VALUES ('Pending',acctid);
+		INSERT INTO accounttype(accttype,acctid) VALUES (accttype,acctid);
+	END;	
+$$ language plpgsql;
 
 INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('mareo1997', 'password', 'Mareo', 'Yapp', 'mareo1997@gmail.com');
 INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('marwil', 'william', 'Marcia', 'Williamson', 'mareo199@gmail.com');
@@ -82,10 +100,10 @@ full join accounttype a3 on a2.acctid =a3.acctid;
 
 select *
 from bankuser b
-FULL JOIN roles r ON b.userid =r.userid 
-full join account a on a.ownerid=b.userid
-full join accountstatus a2 on a.accountid = a2.acctid 
-full join accounttype a3 on a2.acctid =a3.acctid;
+inner JOIN roles r ON b.userid =r.userid 
+inner join account a on a.ownerid=b.userid
+inner join accountstatus a2 on a.accountid = a2.acctid 
+inner join accounttype a3 on a2.acctid =a3.acctid;
 
 update bankuser set userid=1 where roleid=1;
 update account set accountid =1 where ownerid = 1;

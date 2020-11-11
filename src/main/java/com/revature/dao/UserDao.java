@@ -17,6 +17,6 @@ public interface UserDao {
 	public User userlogin(String username, String password);
 
 	// Update
-	public User updateUser(int id, String username, String password, String firstname, String lastname, String email);
+	//public User updateUser(int id, String username, String password, String firstname, String lastname, String email);
 
 }

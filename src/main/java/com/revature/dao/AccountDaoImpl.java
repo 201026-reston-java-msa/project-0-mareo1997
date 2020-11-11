@@ -84,7 +84,7 @@ public class AccountDaoImpl implements AccountDao {
 			//System.out.println();
 			log.info("Calling status and type procedure sql statement.\n");
 
-			call = "call insert_accts(?,?)";
+			call = "CALL insert_accts(?,?)";
 			ps = conn.prepareStatement(call);
 			ps.setInt(1, acct.getAccountId());
 			ps.setString(2, a.getType().getType());
@@ -427,7 +427,7 @@ public class AccountDaoImpl implements AccountDao {
 		return null;
 	}
 
-	@Override
+	/*@Override
 	public List<Account> selectAllStatus(String status) {
 		List<Account> AccountList = new ArrayList<Account>();
 
@@ -493,7 +493,7 @@ public class AccountDaoImpl implements AccountDao {
 			log.error(e+".\n");
 		}
 		return a;
-	}
+	}*/
 
 	@Override
 	public boolean isOwner(int i, int id) {

@@ -54,14 +54,16 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public List<Account> getAllStatus(String status) { //NOT USING
-		List<Account> list = dao.selectAllStatus(status);
-		return list;
+	public List<Account> getAllStatus(String status) {
+		return null; //NOT USING
+		//List<Account> list = dao.selectAllStatus(status);
+		//return list;
 	}
 
 	@Override
-	public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID) { //NOT USING
-		return dao.updateAccount(id, balance, sID, status, tID, type, oID);
+	public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID) {
+		return null; //NOT USING
+		//return dao.updateAccount(id, balance, sID, status, tID, type, oID);
 	}
 
 	@Override

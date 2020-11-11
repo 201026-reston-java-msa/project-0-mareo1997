@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 			}
 			user = users.get(users.size() - 1);
 
-			log.info("Generating insert role sql statement.\n");
+			log.info("Calling role stored procedure sql statement.\n");
 
 			call = "CALL insert_role(?)";
 			ps = conn.prepareStatement(call);
@@ -148,7 +148,7 @@ public class UserDaoImpl implements UserDao {
 		return u;
 	}
 
-	@Override
+/*	@Override
 	public User updateUser(int id, String username, String password, String firstname, String lastname, String email) {
 		User u = null;
 		try (Connection conn = DriverManager.getConnection(url, sqlusername, sqlpassword)) {
@@ -175,7 +175,7 @@ public class UserDaoImpl implements UserDao {
 			log.warn(e + "\n");
 		}
 		return u;
-	}
+	}*/
 
 	@Override
 	public ArrayList<User> selectAllUser() { // Done

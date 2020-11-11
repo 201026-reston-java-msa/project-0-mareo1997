@@ -88,7 +88,7 @@ public class Testing {
 	
 	/***************************************** Test new accounts*********************************/
 
-	// @Ignore
+	//@Ignore
 	@Test
 	public void test4_OPENACCOUNT() {
 		User u = user.getUser(1);
@@ -181,7 +181,7 @@ public class Testing {
 		acct.change(0, "Open");
 	}
 
-	// @Ignore
+	//@Ignore
 	@Test
 	public void test7_CANCELACCT() {
 		Account a = acct.getAccount(4);
@@ -248,6 +248,7 @@ public class Testing {
 		acct.transfer(1, 3, a.getBalance() + 1); // t is more than amt in acct 1
 	}
 
+	//@Ignore
 	@Test
 	public void test9_UNAPPROVEDACCOUNTS() { // Return -1 cause unopen
 		expectedException.expect(UnOpenException.class);

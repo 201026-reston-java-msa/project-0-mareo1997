@@ -51,24 +51,6 @@ create table accounttype(
 	FOREIGN KEY (acctid) REFERENCES account (accountid) on delete cascade
 );
 
-CREATE OR REPLACE PROCEDURE insert_role(userid integer)
-AS $$
-
-	BEGIN 
-		INSERT INTO roles(bankrole,userid) VALUES ('Customer',userid);
-	END;
-	
-$$ language plpgsql;
-
-CREATE OR REPLACE PROCEDURE insert_accts(acctid integer, accttype text)
-AS $$
-
-	BEGIN 
-		INSERT INTO accountstatus(status,acctid) VALUES ('Pending',acctid);
-		INSERT INTO accounttype(accttype,acctid) VALUES (accttype,acctid);
-	END;	
-$$ language plpgsql;
-
 INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('mareo1997', 'password', 'Mareo', 'Yapp', 'mareo1997@gmail.com');
 INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('marwil', 'william', 'Marcia', 'Williamson', 'mareo199@gmail.com');
 INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('king', 'george', 'Kingsley', 'Yapp', 'mareo19@gmail.com');
@@ -81,22 +63,35 @@ insert into account(balance,ownerid) values (5000, 1);
 insert into accountstatus(status, acctid) values ('Open',1);
 insert into accounttype(accttype, acctid) values ('Checkings',1);
 
-INSERT INTO bankuser(username, bankpassword, firstname, lastname, email) values ('a', 'b', 'c', 'd', 'e');
-insert into roles(bankrole,userid) values ('Customer',4);
+CREATE OR REPLACE PROCEDURE insert_role(userid integer)
+AS $$
+	BEGIN 
+		INSERT INTO roles(bankrole,userid) VALUES ('Customer',userid);
+	END;
+$$ language plpgsql; --STORED PROCEDURE FOR ADDING NEWLY MADE USERID IN BANKUSER TABLE TO BE REFERENCED BY THE ROLES TABLE USERID FK
 
-select * --IMPORTANT 
+select * --REGISTRATION AND LOGIN
 from bankuser b
 full join roles r on b.userid =r.userid;
 
-select * from account a 
+--STORED PROCEDURE FOR ADDING NEWLY MADE ACCTID TO BE REFERENCED BY THE STATUS AND TYPE TABLES ACCTID FK
+CREATE OR REPLACE PROCEDURE insert_accts(acctid integer, accttype text)
+AS $$
+	BEGIN 
+		INSERT INTO accountstatus(status,acctid) VALUES ('Pending',acctid);
+		INSERT INTO accounttype(accttype,acctid) VALUES (accttype,acctid);
+	END;	
+$$ language plpgsql;
+
+select * from account a --ACCOUNTS AND TRANSACTIONS
 full join accountstatus a2 on a.accountid = a2.acctid 
 full join accounttype a3 on a2.acctid =a3.acctid;
 
 select *
 from bankuser b
-full join account a on a.ownerid=b.userid
-full join accountstatus a2 on a.accountid = a2.acctid 
-full join accounttype a3 on a2.acctid =a3.acctid;
+inner join account a on a.ownerid=b.userid
+INNER join accountstatus a2 on a.accountid = a2.acctid 
+INNER join accounttype a3 on a2.acctid =a3.acctid;
 
 select *
 from bankuser b

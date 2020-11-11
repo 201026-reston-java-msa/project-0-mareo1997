@@ -27,9 +27,9 @@ public interface AccountDao {
 	// Delete
 	public Account cancelAccount(Account a);
 
-	public List<Account> selectAllStatus(String status);
+	//public List<Account> selectAllStatus(String status);
 
-	public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID);
+	//public Account updateAccount(int id, double balance, int sID, String status, int tID, String type, int oID);
 
 	public boolean isOwner(int i, int id);
 

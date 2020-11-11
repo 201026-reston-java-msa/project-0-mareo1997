@@ -30,8 +30,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(int id, String username, String password, String firstname, String lastname, String email) { //NOT USING
-		return dao.updateUser(id, username, password, firstname, lastname, email);
+	public User updateUser(int id, String username, String password, String firstname, String lastname, String email) {
+		return null; //NOT USING
+		//return dao.updateUser(id, username, password, firstname, lastname, email);
 	}
 
 	@Override

@@ -109,7 +109,7 @@ public class Main {
 		username = s.next();
 		System.out.println("Enter Password");
 		password = s.next();
-		
+
 		System.out.println();
 		log.info("Login attempt.\n");
 
@@ -123,82 +123,74 @@ public class Main {
 				System.out.println(username + " successfully logged in.");
 				CustomerMenu(user);
 
-			} else if (role.equalsIgnoreCase("Employee")|| role.equalsIgnoreCase("Admin")) {
+			} else if (role.equalsIgnoreCase("Employee") || role.equalsIgnoreCase("Admin")) {
 
 				System.out.println(role + ": " + username + " successful logged in.");
 				EmployeeMenu(user);
 
 			}
 		} catch (NullPointerException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 		}
 	}
 
 	private static void CustomerMenu(User u) {
 		boolean login = true;
 		Scanner s = new Scanner(System.in);
-		String cust = null;
 
 		log.info(u.getUsername() + " is in Customer Menu.\n");
 
 		do {
-			int custselect = 0;
-			System.out.println("Welcome " + u.getUsername() + " would you like to:");
-			System.out.println("1. View profile and accounts");
-			System.out.println("2. Open an Account?");
-			System.out.println("3. Make a Deposit?");
-			System.out.println("4. Make a Withdrawl?");
-			System.out.println("5. Make a Transfer?");
-			System.out.println("6. Logout?");
-			cust = s.next();
+			int custselect = -1;
 
-			if (cust.startsWith("p") || cust.startsWith("P") || cust.startsWith("V") || cust.startsWith("v")) {
-				custselect = 5;
-			} else if (cust.startsWith("o") || cust.startsWith("O") || cust.startsWith("A") || cust.startsWith("a")) {
-				custselect = 1;
-			} else if (cust.startsWith("d") || cust.startsWith("D")) {
-				custselect = 2;
-			} else if (cust.startsWith("w") || cust.startsWith("W")) {
-				custselect = 3;
-			} else if (cust.startsWith("t") || cust.startsWith("T")) {
-				custselect = 4;
-			} else if (cust.startsWith("l") || cust.startsWith("L")) {
-				custselect = -1;
-			} else {
-				custselect = 0;
+			try {
+				System.out.println("Welcome " + u.getUsername() + " would you like to:");
+				System.out.println("1. View profile and accounts");
+				System.out.println("2. Open an Account?");
+				System.out.println("3. Make a Deposit?");
+				System.out.println("4. Make a Withdrawl?");
+				System.out.println("5. Make a Transfer?");
+				System.out.println("0. Logout?");
+				custselect = s.nextInt();
+
+			} catch (InputMismatchException e) {
+				System.out.println("Not a valid number\n");
+				log.warn(e + "\n");
 			}
+			s.nextLine();
 
 			switch (custselect) {
-			case 5:
+			case 1:
 				log.info("Chose option to view profile.");
 				userfinder(u);
 				break;
-			case 1:
+			case 2:
 				log.info("Chose option to open account.");
 				openAccount(u);
 				break;
-			case 2:
+			case 3:
 				log.info("Chose option to deposit.\n");
 				deposit(u);
 				break;
-			case 3:
+			case 4:
 				log.info("Chose option to withdraw.\n");
 				withdraw(u);
 				break;
-			case 4:
+			case 5:
 				log.info("Chose option to transfer.\n");
 				transfer(u);
 				break;
 			default:
 				System.out.println("Option not available. Try again.\n");
 				break;
-			case -1:
+			case 0:
 				System.out.println("Logged out\n");
 				log.info(u.getUsername() + " logged out\n");
 				login = false;
 				break;
 			}
 		} while (login);
+
 	}
 
 	private static void userfinder(User u) {
@@ -242,10 +234,9 @@ public class Main {
 
 			Account a = new Account(deposit, at);// System.out.println(a);
 
-			System.out.println(
-					"User ID: " + u.getUserId() + "\t\tName: " + u.getFirstName() + " " + u.getLastName()
-					+ "\nUser Name: " + u.getUsername() + "\tEmail: " + u.getEmail() 
-					+ "\nType: " + type + "\t\tInitial Deposit: $" + deposit);
+			System.out.println("User ID: " + u.getUserId() + "\t\tName: " + u.getFirstName() + " " + u.getLastName()
+					+ "\nUser Name: " + u.getUsername() + "\tEmail: " + u.getEmail() + "\nType: " + type
+					+ "\t\tInitial Deposit: $" + deposit);
 			System.out.println("Is the above information correct?");
 			confirm = s.next();
 
@@ -258,14 +249,14 @@ public class Main {
 			}
 		} catch (InputMismatchException e) {
 			System.out.println("Not a valid number\n");
-			log.warn(e+"\n");
+			log.warn(e + "\n");
 
 		} catch (NullPointerException e) {
 			System.out.println("Could not open account.\n");
 			log.warn(e + "\n");
 
 		} catch (MinimumDepositException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 		}
 	}
 
@@ -285,7 +276,7 @@ public class Main {
 				double b = s.nextDouble();
 
 				log.info(u.getUsername() + " is attempting to deposit $" + b + " in acctID: " + aID + ".\n");
-				
+
 				acctserv.deposit(aID, b);
 
 				log.info(u.getUsername() + " deposited $" + b + " into acctID: " + aID + ".\n");
@@ -304,11 +295,11 @@ public class Main {
 			log.warn("Account does not exist.\n");
 
 		} catch (UnOpenException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Tried to access unopen account.\n");
-			
+
 		} catch (DepositException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Tried to deposit $0 into account.\n");
 		}
 	}
@@ -348,12 +339,12 @@ public class Main {
 			log.warn("Account does not exist.\n");
 
 		} catch (UnOpenException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Tried to access unopen account.\n");
-			
-		} catch (DepositException e) {
-			System.out.println(e+"\n");
-			log.warn("Tried to deposit $0 into account.\n");
+
+		} catch (OverDraftException e) {
+			System.out.println(e + "\n");
+			log.warn("Tried to overdraw from account.\n");
 		}
 
 	}
@@ -377,11 +368,13 @@ public class Main {
 				System.out.println("How much are you transfering?");
 				double b = s.nextDouble();
 
-				log.info(u.getUsername() + " is attempting to transfer $" + b + " from acctID: " + source+ " to acctID: " + target + ".\n");
+				log.info(u.getUsername() + " is attempting to transfer $" + b + " from acctID: " + source
+						+ " to acctID: " + target + ".\n");
 
 				acctserv.transfer(source, target, b);
 
-				log.info(u.getUsername() + " transfered $" + b + " from acctID: " + source + " to acctID: " + target+ ".\n");
+				log.info(u.getUsername() + " transfered $" + b + " from acctID: " + source + " to acctID: " + target
+						+ ".\n");
 
 			} else {
 				System.out.println(u.getUsername() + " did not have permission to access accounts.\n");
@@ -397,11 +390,11 @@ public class Main {
 			log.warn("Account does not exist.\n");
 
 		} catch (UnOpenException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Tried to access unopen account.\n");
 
 		} catch (OverDraftException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Tried to overdraw from account.\n");
 		}
 	}
@@ -409,38 +402,29 @@ public class Main {
 	private static void EmployeeMenu(User u) {
 		Scanner s = new Scanner(System.in);
 		Boolean login = true;
-		String empl = null;
-		int emplselect = 0;
 
 		System.out.println();
 		log.info(u.getRole().getRole() + ": " + u.getUsername() + " is in Employee Menu.\n");
 
 		do {
+			int emplselect = -1;
 
-			System.out.println("\nWelcome " + u.getUsername() + ", here are a range of options");
-			System.out.println("1. View all Customers");
-			System.out.println("2. Find User");
-			System.out.println("3. Find Accounts");
-			System.out.println("4. Approve/Deny account");
-			System.out.println("5. Update accounts");
-			System.out.println("6. Logout");
-			empl = s.next();
+			try {
 
-			if (empl.startsWith("v") || empl.startsWith("V")) {
-				emplselect = 1;
-			} else if (empl.startsWith("u") || empl.startsWith("U")) {
-				emplselect = 2;
-			} else if (empl.startsWith("a") || empl.startsWith("A")) {
-				emplselect = 3;
-			} else if (empl.startsWith("s") || empl.startsWith("S")) {
-				emplselect = 4;
-			} else if (empl.startsWith("t") || empl.startsWith("T")) {
-				emplselect = 5;
-			} else if (empl.startsWith("l") || empl.startsWith("L")) {
-				emplselect = -1;
-			} else {
-				emplselect = 0;
+				System.out.println("\nWelcome " + u.getUsername() + ", here are a range of options");
+				System.out.println("1. View all Customers");
+				System.out.println("2. Find User");
+				System.out.println("3. Find Accounts");
+				System.out.println("4. Approve/Deny account");
+				System.out.println("5. Update accounts");
+				System.out.println("0. Logout");
+				emplselect = s.nextInt();
+
+			} catch (InputMismatchException e) {
+				System.out.println("Not a valid number\n");
+				log.warn(e + "\n");
 			}
+			s.nextLine();
 
 			switch (emplselect) {
 			case 1:
@@ -468,7 +452,7 @@ public class Main {
 				transaction(u);
 				break;
 
-			case -1:
+			case 0:
 				System.out.println("Logged out\n");
 				log.info(u.getUsername() + " logged out\n");
 				login = false;
@@ -504,7 +488,7 @@ public class Main {
 			log.warn(e + "\n");
 
 		} catch (NullPointerException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Could not find userid.\n");
 		}
 	}
@@ -563,8 +547,10 @@ public class Main {
 			}
 
 			if (newstatus.equalsIgnoreCase("Close") && !(u.getRole().getRole().equalsIgnoreCase("Admin"))) {
-				System.out.println(u.getRole().getRole() + ": " + u.getUsername()+ " does not have authorization to close acctID: " + sID + ".\n");
-				log.warn(u.getRole().getRole() + ": " + u.getUsername()+ " does not have authorization to close acctID: " + sID + ".\n");
+				System.out.println(u.getRole().getRole() + ": " + u.getUsername()
+						+ " does not have authorization to close acctID: " + sID + ".\n");
+				log.warn(u.getRole().getRole() + ": " + u.getUsername()
+						+ " does not have authorization to close acctID: " + sID + ".\n");
 
 			} else {
 				acctserv.change(a.getStatus().getStatusId(), newstatus);
@@ -577,7 +563,7 @@ public class Main {
 			log.warn(e + "\n");
 
 		} catch (NullPointerException e) {
-			System.out.println(e+"\n");
+			System.out.println(e + "\n");
 			log.warn("Could not change status.\n");
 		}
 
@@ -586,34 +572,26 @@ public class Main {
 	private static void transaction(User u) {
 		boolean login = true;
 		Scanner s = new Scanner(System.in);
-		String empl;
 
 		log.info(u.getRole().getRole() + ": " + u.getUsername() + " is attempting to update accounts.\n");
 
 		do {
-			int select = 0;
-			System.out.println("\nWould you like to:");
-			System.out.println("1. Make a Deposit?");
-			System.out.println("2. Make a Withdrawl?");
-			System.out.println("3. Make a Transfer?");
-			System.out.println("4. Exit?");
-			empl = s.next();
+			int select = -1;
 
-			if (empl.startsWith("d") || empl.startsWith("D")) {
-				select = 1;
+			try {
 
-			} else if (empl.startsWith("w") || empl.startsWith("W")) {
-				select = 2;
+				System.out.println("\nWould you like to:");
+				System.out.println("1. Make a Deposit?");
+				System.out.println("2. Make a Withdrawl?");
+				System.out.println("3. Make a Transfer?");
+				System.out.println("0. Exit?");
+				select = s.nextInt();
 
-			} else if (empl.startsWith("t") || empl.startsWith("T")) {
-				select = 3;
-
-			} else if (empl.startsWith("e") || empl.startsWith("E")) {
-				select = -1;
-
-			} else {
-				select = 0;
+			} catch (InputMismatchException e) {
+				System.out.println("Not a valid number\n");
+				log.warn(e + "\n");
 			}
+			s.nextLine();
 
 			switch (select) {
 			case 1:
@@ -631,7 +609,7 @@ public class Main {
 				transfer(u);
 				break;
 
-			case -1:
+			case 0:
 				log.info(u.getUsername() + " exited.\n");
 				login = false;
 				break;
